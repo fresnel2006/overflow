@@ -1,0 +1,1871 @@
+{
+  "version": 1,
+  "generatedFor": "Overflow - démo Abidjan",
+  "sites": [
+    {
+      "id": "cocody",
+      "site": {
+        "name": "Résidence Les Cocotiers",
+        "commune": "Cocody - Riviera 3",
+        "waterBody": "Lagune Ébrié, baie de Cocody",
+        "lat": 5.3478,
+        "lon": -3.9662
+      },
+      "scenarios": [
+        {
+          "id": "crue-30",
+          "label": "Crue 30 ans",
+          "color": "#A9CDF5",
+          "description": "Pluie de saison des pluies, période de retour 30 ans",
+          "waterLevelM": 1.54
+        },
+        {
+          "id": "crue-100",
+          "label": "Crue 100 ans",
+          "color": "#5C97E6",
+          "description": "Événement centennal (type juin 2018)",
+          "waterLevelM": 2.12
+        },
+        {
+          "id": "crue-300",
+          "label": "Crue 300 ans",
+          "color": "#1D4FA8",
+          "description": "Événement exceptionnel, période de retour 300 ans",
+          "waterLevelM": 2.68
+        },
+        {
+          "id": "crue-300-digue",
+          "label": "300 ans + rupture de digue",
+          "color": "#F2D9A6",
+          "description": "Crue 300 ans avec rupture de la digue de protection",
+          "waterLevelM": 3.85
+        }
+      ],
+      "buildings": [
+        {
+          "id": "cocody-principal",
+          "name": "Résidence Les Cocotiers",
+          "footprint": [
+            [
+              -7,
+              -4.5
+            ],
+            [
+              7,
+              -4.5
+            ],
+            [
+              7,
+              4.5
+            ],
+            [
+              -7,
+              4.5
+            ]
+          ],
+          "heightM": 6.4,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.4,
+          "main": true,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        },
+        {
+          "id": "cocody-annexe",
+          "name": "Annexe",
+          "footprint": [
+            [
+              8.5,
+              -1
+            ],
+            [
+              14.5,
+              -1
+            ],
+            [
+              14.5,
+              4
+            ],
+            [
+              8.5,
+              4
+            ]
+          ],
+          "heightM": 3.4,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.25,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "t": "2026-06-01T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0,
+            "crue-300-digue": 0
+          }
+        },
+        {
+          "t": "2026-06-01T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0.01,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.01,
+            "crue-300": 0.02,
+            "crue-300-digue": 0.02
+          }
+        },
+        {
+          "t": "2026-06-01T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.02,
+            "crue-100": 0.02,
+            "crue-300": 0.03,
+            "crue-300-digue": 0.03
+          }
+        },
+        {
+          "t": "2026-06-01T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.03,
+            "crue-100": 0.04,
+            "crue-300": 0.05,
+            "crue-300-digue": 0.05
+          }
+        },
+        {
+          "t": "2026-06-01T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.04,
+            "crue-100": 0.05,
+            "crue-300": 0.07,
+            "crue-300-digue": 0.07
+          }
+        },
+        {
+          "t": "2026-06-01T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.06,
+            "crue-100": 0.08,
+            "crue-300": 0.1,
+            "crue-300-digue": 0.1
+          }
+        },
+        {
+          "t": "2026-06-02T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.08,
+            "crue-100": 0.11,
+            "crue-300": 0.14,
+            "crue-300-digue": 0.14
+          }
+        },
+        {
+          "t": "2026-06-02T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.11,
+            "crue-100": 0.15,
+            "crue-300": 0.2,
+            "crue-300-digue": 0.19
+          }
+        },
+        {
+          "t": "2026-06-02T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.15,
+            "crue-100": 0.21,
+            "crue-300": 0.27,
+            "crue-300-digue": 0.26
+          }
+        },
+        {
+          "t": "2026-06-02T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.2,
+            "crue-100": 0.28,
+            "crue-300": 0.35,
+            "crue-300-digue": 0.35
+          }
+        },
+        {
+          "t": "2026-06-02T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.27,
+            "crue-100": 0.37,
+            "crue-300": 0.47,
+            "crue-300-digue": 0.46
+          }
+        },
+        {
+          "t": "2026-06-02T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.35,
+            "crue-100": 0.48,
+            "crue-300": 0.6,
+            "crue-300-digue": 0.59
+          }
+        },
+        {
+          "t": "2026-06-02T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.44,
+            "crue-100": 0.61,
+            "crue-300": 0.77,
+            "crue-300-digue": 0.75
+          }
+        },
+        {
+          "t": "2026-06-02T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.55,
+            "crue-100": 0.75,
+            "crue-300": 0.95,
+            "crue-300-digue": 0.93
+          }
+        },
+        {
+          "t": "2026-06-03T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.66,
+            "crue-100": 0.91,
+            "crue-300": 1.15,
+            "crue-300-digue": 1.13
+          }
+        },
+        {
+          "t": "2026-06-03T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.78,
+            "crue-100": 1.08,
+            "crue-300": 1.36,
+            "crue-300-digue": 1.34
+          }
+        },
+        {
+          "t": "2026-06-03T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.91,
+            "crue-100": 1.25,
+            "crue-300": 1.58,
+            "crue-300-digue": 1.54
+          }
+        },
+        {
+          "t": "2026-06-03T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.02,
+            "crue-100": 1.41,
+            "crue-300": 1.78,
+            "crue-300-digue": 1.74
+          }
+        },
+        {
+          "t": "2026-06-03T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.13,
+            "crue-100": 1.55,
+            "crue-300": 1.96,
+            "crue-300-digue": 1.92
+          }
+        },
+        {
+          "t": "2026-06-03T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.22,
+            "crue-100": 1.68,
+            "crue-300": 2.12,
+            "crue-300-digue": 2.44
+          }
+        },
+        {
+          "t": "2026-06-03T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.29,
+            "crue-100": 1.78,
+            "crue-300": 2.25,
+            "crue-300-digue": 2.86
+          }
+        },
+        {
+          "t": "2026-06-03T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.36,
+            "crue-100": 1.87,
+            "crue-300": 2.36,
+            "crue-300-digue": 3.19
+          }
+        },
+        {
+          "t": "2026-06-04T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.41,
+            "crue-100": 1.94,
+            "crue-300": 2.45,
+            "crue-300-digue": 3.43
+          }
+        },
+        {
+          "t": "2026-06-04T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.45,
+            "crue-100": 1.99,
+            "crue-300": 2.52,
+            "crue-300-digue": 3.61
+          }
+        },
+        {
+          "t": "2026-06-04T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.48,
+            "crue-100": 2.03,
+            "crue-300": 2.57,
+            "crue-300-digue": 3.73
+          }
+        },
+        {
+          "t": "2026-06-04T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.5,
+            "crue-100": 2.07,
+            "crue-300": 2.61,
+            "crue-300-digue": 3.8
+          }
+        },
+        {
+          "t": "2026-06-04T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.52,
+            "crue-100": 2.09,
+            "crue-300": 2.64,
+            "crue-300-digue": 3.83
+          }
+        },
+        {
+          "t": "2026-06-04T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.53,
+            "crue-100": 2.11,
+            "crue-300": 2.66,
+            "crue-300-digue": 3.85
+          }
+        },
+        {
+          "t": "2026-06-04T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.54,
+            "crue-100": 2.12,
+            "crue-300": 2.68,
+            "crue-300-digue": 3.85
+          }
+        }
+      ]
+    },
+    {
+      "id": "yopougon",
+      "site": {
+        "name": "Habitation Niangon-Lokoa",
+        "commune": "Yopougon - Niangon",
+        "waterBody": "Lagune Ébrié, baie de Niangon",
+        "lat": 5.3194,
+        "lon": -4.0911
+      },
+      "scenarios": [
+        {
+          "id": "crue-30",
+          "label": "Crue 30 ans",
+          "color": "#A9CDF5",
+          "description": "Pluie de saison des pluies, période de retour 30 ans",
+          "waterLevelM": 0.92
+        },
+        {
+          "id": "crue-100",
+          "label": "Crue 100 ans",
+          "color": "#5C97E6",
+          "description": "Événement centennal (type juin 2018)",
+          "waterLevelM": 1.46
+        },
+        {
+          "id": "crue-300",
+          "label": "Crue 300 ans",
+          "color": "#1D4FA8",
+          "description": "Événement exceptionnel, période de retour 300 ans",
+          "waterLevelM": 1.98
+        },
+        {
+          "id": "crue-300-digue",
+          "label": "300 ans + rupture de digue",
+          "color": "#F2D9A6",
+          "description": "Crue 300 ans avec rupture de la digue de protection",
+          "waterLevelM": 3.1
+        }
+      ],
+      "buildings": [
+        {
+          "id": "yopougon-principal",
+          "name": "Habitation Niangon-Lokoa",
+          "footprint": [
+            [
+              -6,
+              -4.25
+            ],
+            [
+              6,
+              -4.25
+            ],
+            [
+              6,
+              4.25
+            ],
+            [
+              -6,
+              4.25
+            ]
+          ],
+          "heightM": 3.6,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.3,
+          "main": true,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        },
+        {
+          "id": "yopougon-annexe",
+          "name": "Annexe",
+          "footprint": [
+            [
+              7.5,
+              -0.75
+            ],
+            [
+              13,
+              -0.75
+            ],
+            [
+              13,
+              3.75
+            ],
+            [
+              7.5,
+              3.75
+            ]
+          ],
+          "heightM": 3,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.2,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "t": "2026-06-01T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0,
+            "crue-300-digue": 0
+          }
+        },
+        {
+          "t": "2026-06-01T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.01,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.02,
+            "crue-300": 0.02,
+            "crue-300-digue": 0.02
+          }
+        },
+        {
+          "t": "2026-06-01T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.02,
+            "crue-100": 0.03,
+            "crue-300": 0.03,
+            "crue-300-digue": 0.03
+          }
+        },
+        {
+          "t": "2026-06-01T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.02,
+            "crue-100": 0.04,
+            "crue-300": 0.05,
+            "crue-300-digue": 0.05
+          }
+        },
+        {
+          "t": "2026-06-01T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.03,
+            "crue-100": 0.05,
+            "crue-300": 0.07,
+            "crue-300-digue": 0.07
+          }
+        },
+        {
+          "t": "2026-06-02T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.05,
+            "crue-100": 0.08,
+            "crue-300": 0.1,
+            "crue-300-digue": 0.1
+          }
+        },
+        {
+          "t": "2026-06-02T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.07,
+            "crue-100": 0.11,
+            "crue-300": 0.14,
+            "crue-300-digue": 0.14
+          }
+        },
+        {
+          "t": "2026-06-02T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.09,
+            "crue-100": 0.14,
+            "crue-300": 0.2,
+            "crue-300-digue": 0.19
+          }
+        },
+        {
+          "t": "2026-06-02T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.12,
+            "crue-100": 0.19,
+            "crue-300": 0.26,
+            "crue-300-digue": 0.26
+          }
+        },
+        {
+          "t": "2026-06-02T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.16,
+            "crue-100": 0.25,
+            "crue-300": 0.35,
+            "crue-300-digue": 0.34
+          }
+        },
+        {
+          "t": "2026-06-02T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.21,
+            "crue-100": 0.33,
+            "crue-300": 0.45,
+            "crue-300-digue": 0.44
+          }
+        },
+        {
+          "t": "2026-06-02T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.26,
+            "crue-100": 0.42,
+            "crue-300": 0.57,
+            "crue-300-digue": 0.55
+          }
+        },
+        {
+          "t": "2026-06-02T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.33,
+            "crue-100": 0.52,
+            "crue-300": 0.7,
+            "crue-300-digue": 0.69
+          }
+        },
+        {
+          "t": "2026-06-03T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.4,
+            "crue-100": 0.63,
+            "crue-300": 0.85,
+            "crue-300-digue": 0.83
+          }
+        },
+        {
+          "t": "2026-06-03T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.47,
+            "crue-100": 0.74,
+            "crue-300": 1.01,
+            "crue-300-digue": 0.99
+          }
+        },
+        {
+          "t": "2026-06-03T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.54,
+            "crue-100": 0.86,
+            "crue-300": 1.16,
+            "crue-300-digue": 1.14
+          }
+        },
+        {
+          "t": "2026-06-03T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.61,
+            "crue-100": 0.97,
+            "crue-300": 1.31,
+            "crue-300-digue": 1.29
+          }
+        },
+        {
+          "t": "2026-06-03T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.67,
+            "crue-100": 1.07,
+            "crue-300": 1.45,
+            "crue-300-digue": 1.42
+          }
+        },
+        {
+          "t": "2026-06-03T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.73,
+            "crue-100": 1.15,
+            "crue-300": 1.57,
+            "crue-300-digue": 1.87
+          }
+        },
+        {
+          "t": "2026-06-03T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.77,
+            "crue-100": 1.23,
+            "crue-300": 1.66,
+            "crue-300-digue": 2.24
+          }
+        },
+        {
+          "t": "2026-06-03T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.81,
+            "crue-100": 1.29,
+            "crue-300": 1.75,
+            "crue-300-digue": 2.52
+          }
+        },
+        {
+          "t": "2026-06-04T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.84,
+            "crue-100": 1.33,
+            "crue-300": 1.81,
+            "crue-300-digue": 2.74
+          }
+        },
+        {
+          "t": "2026-06-04T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.86,
+            "crue-100": 1.37,
+            "crue-300": 1.86,
+            "crue-300-digue": 2.89
+          }
+        },
+        {
+          "t": "2026-06-04T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.88,
+            "crue-100": 1.4,
+            "crue-300": 1.9,
+            "crue-300-digue": 2.99
+          }
+        },
+        {
+          "t": "2026-06-04T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.9,
+            "crue-100": 1.42,
+            "crue-300": 1.93,
+            "crue-300-digue": 3.05
+          }
+        },
+        {
+          "t": "2026-06-04T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.91,
+            "crue-100": 1.44,
+            "crue-300": 1.95,
+            "crue-300-digue": 3.09
+          }
+        },
+        {
+          "t": "2026-06-04T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.91,
+            "crue-100": 1.45,
+            "crue-300": 1.97,
+            "crue-300-digue": 3.1
+          }
+        },
+        {
+          "t": "2026-06-04T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.92,
+            "crue-100": 1.46,
+            "crue-300": 1.98,
+            "crue-300-digue": 3.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "marcory",
+      "site": {
+        "name": "Immeuble Zone 4",
+        "commune": "Marcory - Zone 4",
+        "waterBody": "Lagune Ébrié, baie de Biétri",
+        "lat": 5.2952,
+        "lon": -3.9821
+      },
+      "scenarios": [
+        {
+          "id": "crue-30",
+          "label": "Crue 30 ans",
+          "color": "#A9CDF5",
+          "description": "Pluie de saison des pluies, période de retour 30 ans",
+          "waterLevelM": 0.64
+        },
+        {
+          "id": "crue-100",
+          "label": "Crue 100 ans",
+          "color": "#5C97E6",
+          "description": "Événement centennal (type juin 2018)",
+          "waterLevelM": 1.12
+        },
+        {
+          "id": "crue-300",
+          "label": "Crue 300 ans",
+          "color": "#1D4FA8",
+          "description": "Événement exceptionnel, période de retour 300 ans",
+          "waterLevelM": 1.6
+        },
+        {
+          "id": "crue-300-digue",
+          "label": "300 ans + rupture de digue",
+          "color": "#F2D9A6",
+          "description": "Crue 300 ans avec rupture de la digue de protection",
+          "waterLevelM": 2.7
+        }
+      ],
+      "buildings": [
+        {
+          "id": "marcory-principal",
+          "name": "Immeuble Zone 4",
+          "footprint": [
+            [
+              -7.5,
+              -5
+            ],
+            [
+              7.5,
+              -5
+            ],
+            [
+              7.5,
+              5
+            ],
+            [
+              -7.5,
+              5
+            ]
+          ],
+          "heightM": 9.4,
+          "roof": "flat",
+          "groundFloorOffsetM": 0.5,
+          "main": true,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        },
+        {
+          "id": "marcory-annexe",
+          "name": "Annexe",
+          "footprint": [
+            [
+              9,
+              -1.5
+            ],
+            [
+              15,
+              -1.5
+            ],
+            [
+              15,
+              3.5
+            ],
+            [
+              9,
+              3.5
+            ]
+          ],
+          "heightM": 3.2,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.3,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "t": "2026-06-01T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0,
+            "crue-300-digue": 0
+          }
+        },
+        {
+          "t": "2026-06-01T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0,
+            "crue-300-digue": 0
+          }
+        },
+        {
+          "t": "2026-06-01T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0.01,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.01,
+            "crue-300": 0.02,
+            "crue-300-digue": 0.02
+          }
+        },
+        {
+          "t": "2026-06-01T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.02,
+            "crue-300": 0.03,
+            "crue-300-digue": 0.03
+          }
+        },
+        {
+          "t": "2026-06-01T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.02,
+            "crue-100": 0.03,
+            "crue-300": 0.04,
+            "crue-300-digue": 0.04
+          }
+        },
+        {
+          "t": "2026-06-01T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.02,
+            "crue-100": 0.04,
+            "crue-300": 0.06,
+            "crue-300-digue": 0.06
+          }
+        },
+        {
+          "t": "2026-06-02T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.03,
+            "crue-100": 0.06,
+            "crue-300": 0.08,
+            "crue-300-digue": 0.08
+          }
+        },
+        {
+          "t": "2026-06-02T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.05,
+            "crue-100": 0.08,
+            "crue-300": 0.12,
+            "crue-300-digue": 0.11
+          }
+        },
+        {
+          "t": "2026-06-02T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.06,
+            "crue-100": 0.11,
+            "crue-300": 0.16,
+            "crue-300-digue": 0.16
+          }
+        },
+        {
+          "t": "2026-06-02T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.08,
+            "crue-100": 0.15,
+            "crue-300": 0.21,
+            "crue-300-digue": 0.21
+          }
+        },
+        {
+          "t": "2026-06-02T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.11,
+            "crue-100": 0.2,
+            "crue-300": 0.28,
+            "crue-300-digue": 0.27
+          }
+        },
+        {
+          "t": "2026-06-02T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.14,
+            "crue-100": 0.25,
+            "crue-300": 0.36,
+            "crue-300-digue": 0.35
+          }
+        },
+        {
+          "t": "2026-06-02T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.18,
+            "crue-100": 0.32,
+            "crue-300": 0.46,
+            "crue-300-digue": 0.45
+          }
+        },
+        {
+          "t": "2026-06-02T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.23,
+            "crue-100": 0.4,
+            "crue-300": 0.57,
+            "crue-300-digue": 0.56
+          }
+        },
+        {
+          "t": "2026-06-03T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.28,
+            "crue-100": 0.48,
+            "crue-300": 0.69,
+            "crue-300-digue": 0.67
+          }
+        },
+        {
+          "t": "2026-06-03T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.33,
+            "crue-100": 0.57,
+            "crue-300": 0.81,
+            "crue-300-digue": 0.8
+          }
+        },
+        {
+          "t": "2026-06-03T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.38,
+            "crue-100": 0.66,
+            "crue-300": 0.94,
+            "crue-300-digue": 0.92
+          }
+        },
+        {
+          "t": "2026-06-03T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.42,
+            "crue-100": 0.74,
+            "crue-300": 1.06,
+            "crue-300-digue": 1.04
+          }
+        },
+        {
+          "t": "2026-06-03T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.47,
+            "crue-100": 0.82,
+            "crue-300": 1.17,
+            "crue-300-digue": 1.15
+          }
+        },
+        {
+          "t": "2026-06-03T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.51,
+            "crue-100": 0.89,
+            "crue-300": 1.26,
+            "crue-300-digue": 1.57
+          }
+        },
+        {
+          "t": "2026-06-03T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.54,
+            "crue-100": 0.94,
+            "crue-300": 1.35,
+            "crue-300-digue": 1.9
+          }
+        },
+        {
+          "t": "2026-06-03T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.56,
+            "crue-100": 0.99,
+            "crue-300": 1.41,
+            "crue-300-digue": 2.17
+          }
+        },
+        {
+          "t": "2026-06-04T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.59,
+            "crue-100": 1.02,
+            "crue-300": 1.46,
+            "crue-300-digue": 2.36
+          }
+        },
+        {
+          "t": "2026-06-04T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.6,
+            "crue-100": 1.05,
+            "crue-300": 1.5,
+            "crue-300-digue": 2.51
+          }
+        },
+        {
+          "t": "2026-06-04T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.61,
+            "crue-100": 1.07,
+            "crue-300": 1.53,
+            "crue-300-digue": 2.6
+          }
+        },
+        {
+          "t": "2026-06-04T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.62,
+            "crue-100": 1.09,
+            "crue-300": 1.56,
+            "crue-300-digue": 2.66
+          }
+        },
+        {
+          "t": "2026-06-04T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.63,
+            "crue-100": 1.1,
+            "crue-300": 1.58,
+            "crue-300-digue": 2.69
+          }
+        },
+        {
+          "t": "2026-06-04T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.64,
+            "crue-100": 1.11,
+            "crue-300": 1.59,
+            "crue-300-digue": 2.7
+          }
+        },
+        {
+          "t": "2026-06-04T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.64,
+            "crue-100": 1.12,
+            "crue-300": 1.6,
+            "crue-300-digue": 2.7
+          }
+        }
+      ]
+    },
+    {
+      "id": "treichville",
+      "site": {
+        "name": "Entrepôt Rue 12",
+        "commune": "Treichville - Zone portuaire",
+        "waterBody": "Lagune Ébrié, canal de Vridi",
+        "lat": 5.2889,
+        "lon": -4.0039
+      },
+      "scenarios": [
+        {
+          "id": "crue-30",
+          "label": "Crue 30 ans",
+          "color": "#A9CDF5",
+          "description": "Pluie de saison des pluies, période de retour 30 ans",
+          "waterLevelM": 1.05
+        },
+        {
+          "id": "crue-100",
+          "label": "Crue 100 ans",
+          "color": "#5C97E6",
+          "description": "Événement centennal (type juin 2018)",
+          "waterLevelM": 1.58
+        },
+        {
+          "id": "crue-300",
+          "label": "Crue 300 ans",
+          "color": "#1D4FA8",
+          "description": "Événement exceptionnel, période de retour 300 ans",
+          "waterLevelM": 2.06
+        },
+        {
+          "id": "crue-300-digue",
+          "label": "300 ans + rupture de digue",
+          "color": "#F2D9A6",
+          "description": "Crue 300 ans avec rupture de la digue de protection",
+          "waterLevelM": 3.3
+        }
+      ],
+      "buildings": [
+        {
+          "id": "treichville-principal",
+          "name": "Entrepôt Rue 12",
+          "footprint": [
+            [
+              -8,
+              -5
+            ],
+            [
+              8,
+              -5
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              -8,
+              5
+            ]
+          ],
+          "heightM": 6.8,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.6,
+          "main": true,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        },
+        {
+          "id": "treichville-annexe",
+          "name": "Annexe",
+          "footprint": [
+            [
+              9.5,
+              -1.5
+            ],
+            [
+              16,
+              -1.5
+            ],
+            [
+              16,
+              3.5
+            ],
+            [
+              9.5,
+              3.5
+            ]
+          ],
+          "heightM": 3.6,
+          "roof": "flat",
+          "groundFloorOffsetM": 0.4,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "t": "2026-06-01T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0,
+            "crue-300-digue": 0
+          }
+        },
+        {
+          "t": "2026-06-01T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.01,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.02,
+            "crue-300": 0.02,
+            "crue-300-digue": 0.02
+          }
+        },
+        {
+          "t": "2026-06-01T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.02,
+            "crue-100": 0.03,
+            "crue-300": 0.04,
+            "crue-300-digue": 0.03
+          }
+        },
+        {
+          "t": "2026-06-01T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.03,
+            "crue-100": 0.04,
+            "crue-300": 0.05,
+            "crue-300-digue": 0.05
+          }
+        },
+        {
+          "t": "2026-06-01T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.04,
+            "crue-100": 0.06,
+            "crue-300": 0.08,
+            "crue-300-digue": 0.08
+          }
+        },
+        {
+          "t": "2026-06-02T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.06,
+            "crue-100": 0.08,
+            "crue-300": 0.11,
+            "crue-300-digue": 0.11
+          }
+        },
+        {
+          "t": "2026-06-02T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.08,
+            "crue-100": 0.12,
+            "crue-300": 0.15,
+            "crue-300-digue": 0.15
+          }
+        },
+        {
+          "t": "2026-06-02T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.1,
+            "crue-100": 0.16,
+            "crue-300": 0.2,
+            "crue-300-digue": 0.2
+          }
+        },
+        {
+          "t": "2026-06-02T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.14,
+            "crue-100": 0.21,
+            "crue-300": 0.27,
+            "crue-300-digue": 0.27
+          }
+        },
+        {
+          "t": "2026-06-02T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.18,
+            "crue-100": 0.28,
+            "crue-300": 0.36,
+            "crue-300-digue": 0.35
+          }
+        },
+        {
+          "t": "2026-06-02T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.24,
+            "crue-100": 0.36,
+            "crue-300": 0.46,
+            "crue-300-digue": 0.45
+          }
+        },
+        {
+          "t": "2026-06-02T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.3,
+            "crue-100": 0.45,
+            "crue-300": 0.59,
+            "crue-300-digue": 0.58
+          }
+        },
+        {
+          "t": "2026-06-02T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.37,
+            "crue-100": 0.56,
+            "crue-300": 0.73,
+            "crue-300-digue": 0.72
+          }
+        },
+        {
+          "t": "2026-06-03T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.45,
+            "crue-100": 0.68,
+            "crue-300": 0.89,
+            "crue-300-digue": 0.87
+          }
+        },
+        {
+          "t": "2026-06-03T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.53,
+            "crue-100": 0.8,
+            "crue-300": 1.05,
+            "crue-300-digue": 1.03
+          }
+        },
+        {
+          "t": "2026-06-03T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.62,
+            "crue-100": 0.93,
+            "crue-300": 1.21,
+            "crue-300-digue": 1.19
+          }
+        },
+        {
+          "t": "2026-06-03T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.7,
+            "crue-100": 1.05,
+            "crue-300": 1.37,
+            "crue-300-digue": 1.34
+          }
+        },
+        {
+          "t": "2026-06-03T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.77,
+            "crue-100": 1.16,
+            "crue-300": 1.51,
+            "crue-300-digue": 1.48
+          }
+        },
+        {
+          "t": "2026-06-03T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.83,
+            "crue-100": 1.25,
+            "crue-300": 1.63,
+            "crue-300-digue": 1.97
+          }
+        },
+        {
+          "t": "2026-06-03T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.88,
+            "crue-100": 1.33,
+            "crue-300": 1.73,
+            "crue-300-digue": 2.37
+          }
+        },
+        {
+          "t": "2026-06-03T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.93,
+            "crue-100": 1.39,
+            "crue-300": 1.82,
+            "crue-300-digue": 2.67
+          }
+        },
+        {
+          "t": "2026-06-04T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.96,
+            "crue-100": 1.44,
+            "crue-300": 1.88,
+            "crue-300-digue": 2.91
+          }
+        },
+        {
+          "t": "2026-06-04T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.99,
+            "crue-100": 1.48,
+            "crue-300": 1.94,
+            "crue-300-digue": 3.07
+          }
+        },
+        {
+          "t": "2026-06-04T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.01,
+            "crue-100": 1.52,
+            "crue-300": 1.98,
+            "crue-300-digue": 3.18
+          }
+        },
+        {
+          "t": "2026-06-04T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.02,
+            "crue-100": 1.54,
+            "crue-300": 2.01,
+            "crue-300-digue": 3.25
+          }
+        },
+        {
+          "t": "2026-06-04T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.03,
+            "crue-100": 1.56,
+            "crue-300": 2.03,
+            "crue-300-digue": 3.29
+          }
+        },
+        {
+          "t": "2026-06-04T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.04,
+            "crue-100": 1.57,
+            "crue-300": 2.05,
+            "crue-300-digue": 3.3
+          }
+        },
+        {
+          "t": "2026-06-04T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 1.05,
+            "crue-100": 1.58,
+            "crue-300": 2.06,
+            "crue-300-digue": 3.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "abobo",
+      "site": {
+        "name": "Maison Abobo-Baoulé",
+        "commune": "Abobo - Baoulé",
+        "waterBody": "Ruissellement urbain, talweg d’Abobo",
+        "lat": 5.4312,
+        "lon": -4.0198
+      },
+      "scenarios": [
+        {
+          "id": "crue-30",
+          "label": "Crue 30 ans",
+          "color": "#A9CDF5",
+          "description": "Pluie de saison des pluies, période de retour 30 ans",
+          "waterLevelM": 0.48
+        },
+        {
+          "id": "crue-100",
+          "label": "Crue 100 ans",
+          "color": "#5C97E6",
+          "description": "Événement centennal (type juin 2018)",
+          "waterLevelM": 0.86
+        },
+        {
+          "id": "crue-300",
+          "label": "Crue 300 ans",
+          "color": "#1D4FA8",
+          "description": "Événement exceptionnel, période de retour 300 ans",
+          "waterLevelM": 1.3
+        },
+        {
+          "id": "crue-300-digue",
+          "label": "300 ans + rupture de digue",
+          "color": "#F2D9A6",
+          "description": "Crue 300 ans avec rupture de la digue de protection",
+          "waterLevelM": 2.05
+        }
+      ],
+      "buildings": [
+        {
+          "id": "abobo-principal",
+          "name": "Maison Abobo-Baoulé",
+          "footprint": [
+            [
+              -5.5,
+              -4
+            ],
+            [
+              5.5,
+              -4
+            ],
+            [
+              5.5,
+              4
+            ],
+            [
+              -5.5,
+              4
+            ]
+          ],
+          "heightM": 3.5,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.35,
+          "main": true,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        },
+        {
+          "id": "abobo-annexe",
+          "name": "Annexe",
+          "footprint": [
+            [
+              7,
+              -0.5
+            ],
+            [
+              12,
+              -0.5
+            ],
+            [
+              12,
+              3.5
+            ],
+            [
+              7,
+              3.5
+            ]
+          ],
+          "heightM": 2.9,
+          "roof": "gable",
+          "groundFloorOffsetM": 0.2,
+          "facadeEdge": 0,
+          "rulerCorners": [
+            0
+          ]
+        }
+      ],
+      "timeline": [
+        {
+          "t": "2026-06-01T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0,
+            "crue-300-digue": 0
+          }
+        },
+        {
+          "t": "2026-06-01T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0,
+            "crue-300": 0,
+            "crue-300-digue": 0
+          }
+        },
+        {
+          "t": "2026-06-01T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0,
+            "crue-100": 0.01,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.01,
+            "crue-300": 0.01,
+            "crue-300-digue": 0.01
+          }
+        },
+        {
+          "t": "2026-06-01T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.01,
+            "crue-300": 0.02,
+            "crue-300-digue": 0.02
+          }
+        },
+        {
+          "t": "2026-06-01T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.01,
+            "crue-100": 0.02,
+            "crue-300": 0.03,
+            "crue-300-digue": 0.03
+          }
+        },
+        {
+          "t": "2026-06-01T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.02,
+            "crue-100": 0.03,
+            "crue-300": 0.05,
+            "crue-300-digue": 0.05
+          }
+        },
+        {
+          "t": "2026-06-02T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.03,
+            "crue-100": 0.05,
+            "crue-300": 0.07,
+            "crue-300-digue": 0.07
+          }
+        },
+        {
+          "t": "2026-06-02T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.03,
+            "crue-100": 0.06,
+            "crue-300": 0.09,
+            "crue-300-digue": 0.09
+          }
+        },
+        {
+          "t": "2026-06-02T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.05,
+            "crue-100": 0.09,
+            "crue-300": 0.13,
+            "crue-300-digue": 0.13
+          }
+        },
+        {
+          "t": "2026-06-02T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.06,
+            "crue-100": 0.11,
+            "crue-300": 0.17,
+            "crue-300-digue": 0.17
+          }
+        },
+        {
+          "t": "2026-06-02T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.08,
+            "crue-100": 0.15,
+            "crue-300": 0.23,
+            "crue-300-digue": 0.22
+          }
+        },
+        {
+          "t": "2026-06-02T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.11,
+            "crue-100": 0.19,
+            "crue-300": 0.29,
+            "crue-300-digue": 0.29
+          }
+        },
+        {
+          "t": "2026-06-02T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.14,
+            "crue-100": 0.25,
+            "crue-300": 0.37,
+            "crue-300-digue": 0.36
+          }
+        },
+        {
+          "t": "2026-06-02T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.17,
+            "crue-100": 0.31,
+            "crue-300": 0.46,
+            "crue-300-digue": 0.45
+          }
+        },
+        {
+          "t": "2026-06-03T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.21,
+            "crue-100": 0.37,
+            "crue-300": 0.56,
+            "crue-300-digue": 0.55
+          }
+        },
+        {
+          "t": "2026-06-03T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.24,
+            "crue-100": 0.44,
+            "crue-300": 0.66,
+            "crue-300-digue": 0.65
+          }
+        },
+        {
+          "t": "2026-06-03T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.28,
+            "crue-100": 0.51,
+            "crue-300": 0.76,
+            "crue-300-digue": 0.75
+          }
+        },
+        {
+          "t": "2026-06-03T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.32,
+            "crue-100": 0.57,
+            "crue-300": 0.86,
+            "crue-300-digue": 0.84
+          }
+        },
+        {
+          "t": "2026-06-03T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.35,
+            "crue-100": 0.63,
+            "crue-300": 0.95,
+            "crue-300-digue": 0.93
+          }
+        },
+        {
+          "t": "2026-06-03T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.38,
+            "crue-100": 0.68,
+            "crue-300": 1.03,
+            "crue-300-digue": 1.23
+          }
+        },
+        {
+          "t": "2026-06-03T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.4,
+            "crue-100": 0.72,
+            "crue-300": 1.09,
+            "crue-300-digue": 1.48
+          }
+        },
+        {
+          "t": "2026-06-03T21:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.42,
+            "crue-100": 0.76,
+            "crue-300": 1.15,
+            "crue-300-digue": 1.67
+          }
+        },
+        {
+          "t": "2026-06-04T00:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.44,
+            "crue-100": 0.79,
+            "crue-300": 1.19,
+            "crue-300-digue": 1.81
+          }
+        },
+        {
+          "t": "2026-06-04T03:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.45,
+            "crue-100": 0.81,
+            "crue-300": 1.22,
+            "crue-300-digue": 1.91
+          }
+        },
+        {
+          "t": "2026-06-04T06:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.46,
+            "crue-100": 0.82,
+            "crue-300": 1.25,
+            "crue-300-digue": 1.98
+          }
+        },
+        {
+          "t": "2026-06-04T09:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.47,
+            "crue-100": 0.84,
+            "crue-300": 1.27,
+            "crue-300-digue": 2.02
+          }
+        },
+        {
+          "t": "2026-06-04T12:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.47,
+            "crue-100": 0.85,
+            "crue-300": 1.28,
+            "crue-300-digue": 2.04
+          }
+        },
+        {
+          "t": "2026-06-04T15:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.48,
+            "crue-100": 0.85,
+            "crue-300": 1.29,
+            "crue-300-digue": 2.05
+          }
+        },
+        {
+          "t": "2026-06-04T18:00:00Z",
+          "levelsByScenario": {
+            "crue-30": 0.48,
+            "crue-100": 0.86,
+            "crue-300": 1.3,
+            "crue-300-digue": 2.05
+          }
+        }
+      ]
+    }
+  ]
+}
