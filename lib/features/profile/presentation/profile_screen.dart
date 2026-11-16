@@ -43,7 +43,8 @@ class ProfileScreen extends ConsumerWidget {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 28),
         children: [
-          PageHeader(title: l.profileTitle, showBack: false),
+          // L'en-tete a deja sa propre marge de 20 : on compense celle de la liste.
+          Transform.translate(offset: const Offset(-20, 0), child: PageHeader(title: l.profileTitle, showBack: false)),
           AppCard(
             onTap: () => context.go(Routes.personalInfo),
             padding: const EdgeInsets.all(18),

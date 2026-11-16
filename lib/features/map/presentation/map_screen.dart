@@ -17,6 +17,7 @@ import '../../../core/theme/severity_style.dart';
 import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/buttons.dart';
 import '../../../core/widgets/state_views.dart';
+import '../../emergency/presentation/emergency_sheet.dart';
 import '../../water_levels/domain/station.dart';
 import '../../water_levels/presentation/station_providers.dart';
 import '../domain/risk_zone.dart';
@@ -44,6 +45,9 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   var _ready = false;
   var _satellite = true;
   var _locating = false;
+  // Les pastilles des capteurs n'apparaissent qu'en vue rapprochee pour ne pas couvrir les zones.
+  static const _stationZoom = 14.0;
+  var _showStations = false;
   LatLng? _me;
   String? _handledFocus;
 
@@ -96,7 +100,12 @@ class _MapScreenState extends ConsumerState<MapScreen> {
 
   void _openZone(RiskZone zone) {
     _searchFocus.unfocus();
-    showModalBottomSheet<void>(context: context, isScrollControlled: true, useSafeArea: true, builder: (_) => ZoneSheet(zone: zone));
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (_) => ZoneSheet(zone: zone),
+    );
   }
 
   void _onMapTap(LatLng p, List<RiskZone> zones) {
@@ -150,6 +159,10 @@ class _MapScreenState extends ConsumerState<MapScreen> {
               interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
               onMapReady: () => setState(() => _ready = true),
               onTap: (_, p) => _onMapTap(p, zoneList),
+              onPositionChanged: (camera, _) {
+                final show = camera.zoom >= _stationZoom;
+                if (show != _showStations) setState(() => _showStations = show);
+              },
             ),
             children: [
               if (_satellite) ...[
@@ -180,16 +193,18 @@ class _MapScreenState extends ConsumerState<MapScreen> {
               ),
               MarkerLayer(
                 markers: [
-                  for (final s in stationList)
-                    Marker(
-                      point: LatLng(s.lat, s.lon),
-                      width: 30,
-                      height: 30,
-                      child: _StationDot(station: s, onTap: () => context.push(Routes.station(s.id))),
-                    ),
+                  if (_showStations)
+                    for (final s in stationList)
+                      Marker(
+                        point: LatLng(s.lat, s.lon),
+                        width: 30,
+                        height: 30,
+                        child: _StationDot(station: s, onTap: () => context.push(Routes.station(s.id))),
+                      ),
                   for (final z in zoneList)
                     Marker(
-                      point: LatLng(z.lat, z.lon),
+                      // En vue rapprochee, le pin est decale pour laisser voir le capteur au centre.
+                      point: _showStations ? LatLng(z.lat + 0.0012, z.lon) : LatLng(z.lat, z.lon),
                       width: 40,
                       height: 44,
                       alignment: Alignment.topCenter,
@@ -249,6 +264,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                           tooltip: _satellite ? l.mapPlan : l.mapSatellite,
                           onPressed: () => setState(() => _satellite = !_satellite),
                         ),
+                        const SizedBox(height: 10),
+                        CircleIconButton(
+                          icon: LucideIcons.siren,
+                          tooltip: l.mapEmergency,
+                          background: AppColors.danger,
+                          iconColor: Colors.white,
+                          onPressed: () => showEmergencySheet(context),
+                        ),
                       ],
                     ),
                   ),
@@ -271,7 +294,12 @@ class _MapScreenState extends ConsumerState<MapScreen> {
               ),
             ),
 
-          Positioned(left: 16, right: 16, bottom: 16, child: _LegendCard(updatedAt: stationList.isEmpty ? null : stationList.first.updatedAt, satellite: _satellite)),
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom: 16,
+            child: _LegendCard(updatedAt: stationList.isEmpty ? null : stationList.first.updatedAt, satellite: _satellite),
+          ),
         ],
       ),
     );
@@ -310,7 +338,10 @@ class _SearchBar extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 13),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: const BorderSide(color: AppColors.primary)),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(color: AppColors.primary),
+        ),
       ),
     ),
   );
@@ -326,7 +357,10 @@ class _SearchResults extends StatelessWidget {
     margin: const EdgeInsets.only(top: 8),
     decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(AppRadius.lg), boxShadow: AppShadows.card),
     child: zones.isEmpty
-        ? Padding(padding: const EdgeInsets.all(16), child: Text(context.l10n.mapNoResult, style: AppText.bodyMuted))
+        ? Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(context.l10n.mapNoResult, style: AppText.bodyMuted),
+          )
         : Column(
             children: [
               for (final z in zones)
@@ -354,7 +388,12 @@ class _ZonePin extends StatelessWidget {
     label: label,
     child: GestureDetector(
       onTap: onTap,
-      child: Icon(Icons.location_on, size: 40, color: color, shadows: const [Shadow(color: Color(0x55000000), blurRadius: 6, offset: Offset(0, 2))]),
+      child: Icon(
+        Icons.location_on,
+        size: 40,
+        color: color,
+        shadows: const [Shadow(color: Color(0x55000000), blurRadius: 6, offset: Offset(0, 2))],
+      ),
     ),
   );
 }
@@ -422,7 +461,11 @@ class _LegendCard extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Container(width: 9, height: 9, decoration: BoxDecoration(color: r.color, shape: BoxShape.circle)),
+                    Container(
+                      width: 9,
+                      height: 9,
+                      decoration: BoxDecoration(color: r.color, shape: BoxShape.circle),
+                    ),
                     const SizedBox(width: 6),
                     Text(r.label(l), style: AppText.caption.copyWith(color: AppColors.textPrimary)),
                   ],

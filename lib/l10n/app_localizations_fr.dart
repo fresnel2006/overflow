@@ -922,4 +922,71 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get notifChannelDesc => 'Alertes de niveau d\'eau de votre zone';
+
+  @override
+  String get emergencySos => 'SOS';
+
+  @override
+  String get emergencyTitle => 'Besoin d\'aide ?';
+
+  @override
+  String get emergencySubtitle =>
+      'Appelez directement les secours. Les numéros d\'urgence sont gratuits.';
+
+  @override
+  String get emergencySendSos => 'Envoyer un SOS avec ma position';
+
+  @override
+  String get emergencySosHint =>
+      'Votre position est transmise aux autorités qui supervisent les inondations.';
+
+  @override
+  String emergencySosSent(String ref) {
+    return 'SOS reçu (réf. $ref)';
+  }
+
+  @override
+  String get emergencySosSentDetail =>
+      'Les autorités ont votre position. Si votre vie est en danger, appelez aussi les sapeurs-pompiers.';
+
+  @override
+  String get emergencySosOffline =>
+      'Pas de connexion : le SOS n\'est pas parti. Appelez directement un numéro ci-dessous.';
+
+  @override
+  String get emergencyCallTitle => 'Appeler les secours';
+
+  @override
+  String emergencyCallSemantics(String name, String number) {
+    return 'Appeler $name au $number';
+  }
+
+  @override
+  String get emergencyShareSms => 'Partager ma position par SMS';
+
+  @override
+  String emergencySmsBody(String commune, String location) {
+    return 'URGENCE inondation. J\'ai besoin d\'aide à $commune.$location (envoyé depuis Overflow)';
+  }
+
+  @override
+  String emergencyCallError(String number) {
+    return 'Impossible d\'ouvrir le téléphone. Composez le $number.';
+  }
+
+  @override
+  String get emergencyLaunchError => 'Impossible d\'ouvrir l\'application SMS.';
+
+  @override
+  String get emergencyCallButton => 'Appeler les secours';
+
+  @override
+  String get emergencyBannerTitle => 'Vous êtes dans une zone inondée ?';
+
+  @override
+  String get emergencyBannerSubtitle =>
+      'Appelez les secours ou envoyez un SOS en un geste.';
+
+  @override
+  String get mapEmergency => 'Urgence';
 }

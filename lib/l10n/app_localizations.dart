@@ -1785,6 +1785,114 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Alertes de niveau d\'eau de votre zone'**
   String get notifChannelDesc;
+
+  /// No description provided for @emergencySos.
+  ///
+  /// In fr, this message translates to:
+  /// **'SOS'**
+  String get emergencySos;
+
+  /// No description provided for @emergencyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Besoin d\'aide ?'**
+  String get emergencyTitle;
+
+  /// No description provided for @emergencySubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appelez directement les secours. Les numéros d\'urgence sont gratuits.'**
+  String get emergencySubtitle;
+
+  /// No description provided for @emergencySendSos.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer un SOS avec ma position'**
+  String get emergencySendSos;
+
+  /// No description provided for @emergencySosHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre position est transmise aux autorités qui supervisent les inondations.'**
+  String get emergencySosHint;
+
+  /// No description provided for @emergencySosSent.
+  ///
+  /// In fr, this message translates to:
+  /// **'SOS reçu (réf. {ref})'**
+  String emergencySosSent(String ref);
+
+  /// No description provided for @emergencySosSentDetail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les autorités ont votre position. Si votre vie est en danger, appelez aussi les sapeurs-pompiers.'**
+  String get emergencySosSentDetail;
+
+  /// No description provided for @emergencySosOffline.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de connexion : le SOS n\'est pas parti. Appelez directement un numéro ci-dessous.'**
+  String get emergencySosOffline;
+
+  /// No description provided for @emergencyCallTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appeler les secours'**
+  String get emergencyCallTitle;
+
+  /// No description provided for @emergencyCallSemantics.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appeler {name} au {number}'**
+  String emergencyCallSemantics(String name, String number);
+
+  /// No description provided for @emergencyShareSms.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partager ma position par SMS'**
+  String get emergencyShareSms;
+
+  /// No description provided for @emergencySmsBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'URGENCE inondation. J\'ai besoin d\'aide à {commune}.{location} (envoyé depuis Overflow)'**
+  String emergencySmsBody(String commune, String location);
+
+  /// No description provided for @emergencyCallError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'ouvrir le téléphone. Composez le {number}.'**
+  String emergencyCallError(String number);
+
+  /// No description provided for @emergencyLaunchError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'ouvrir l\'application SMS.'**
+  String get emergencyLaunchError;
+
+  /// No description provided for @emergencyCallButton.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appeler les secours'**
+  String get emergencyCallButton;
+
+  /// No description provided for @emergencyBannerTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous êtes dans une zone inondée ?'**
+  String get emergencyBannerTitle;
+
+  /// No description provided for @emergencyBannerSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appelez les secours ou envoyez un SOS en un geste.'**
+  String get emergencyBannerSubtitle;
+
+  /// No description provided for @mapEmergency.
+  ///
+  /// In fr, this message translates to:
+  /// **'Urgence'**
+  String get mapEmergency;
 }
 
 class _AppLocalizationsDelegate

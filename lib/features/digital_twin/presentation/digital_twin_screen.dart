@@ -44,6 +44,8 @@ class _DigitalTwinScreenState extends ConsumerState<DigitalTwinScreen> {
 
   // Cache du jeu "temps reel" : le viewer ne doit recevoir un nouveau jeu que si les mesures changent.
   Object? _liveKey;
+  // Site + station pour lesquels la mesure capteur a deja ete selectionnee.
+  String? _liveActivatedFor;
   FloodDataset? _liveDataset;
 
   @override
@@ -86,18 +88,25 @@ class _DigitalTwinScreenState extends ConsumerState<DigitalTwinScreen> {
   }
 
   void _setMode(TwinMode m) {
-    setState(() => _mode = m);
-    if (m == TwinMode.live) {
-      // Une fois le nouveau jeu transmis, on selectionne le scenario mesure et la derniere mesure.
+    setState(() {
+      _mode = m;
+      if (m == TwinMode.live) _liveActivatedFor = null;
+    });
+  }
+
+  /// Une fois le jeu temps reel transmis au viewer (2 frames), selectionne la mesure capteur
+  /// et place la frise sur la derniere mesure.
+  void _activateLive(String key) {
+    if (_liveActivatedFor == key) return;
+    _liveActivatedFor = key;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (!mounted) return;
-          final n = ref.read(floodViewerProvider.notifier);
-          n.setActiveScenario(liveScenarioId);
-          n.setTimeIndex(ref.read(floodViewerProvider).maxIndex.toDouble());
-        });
+        if (!mounted) return;
+        final n = ref.read(floodViewerProvider.notifier);
+        n.setActiveScenario(liveScenarioId);
+        n.setTimeIndex(ref.read(floodViewerProvider).maxIndex.toDouble());
       });
-    }
+    });
   }
 
   @override
@@ -132,6 +141,7 @@ class _DigitalTwinScreenState extends ConsumerState<DigitalTwinScreen> {
               final history = station == null ? null : ref.watch(stationHistoryProvider(station.id)).value;
               final live = _mode == TwinMode.live && station != null && history != null;
               final dataset = live ? _liveFor(site, station, history, l.twinLiveLabel) : site;
+              if (live) _activateLive('${site.id}|${station.id}');
 
               return FloodViewer3D(
                 controller: _controller,

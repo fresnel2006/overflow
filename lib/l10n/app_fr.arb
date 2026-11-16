@@ -1,9 +1,7 @@
 {
   "@@locale": "fr",
-
   "appName": "OverFlow",
   "appTagline": "Abidjan - Protéger - Agir",
-
   "commonRetry": "Réessayer",
   "commonCancel": "Annuler",
   "commonSave": "Enregistrer",
@@ -13,8 +11,13 @@
   "commonBack": "Retour",
   "commonDemoMode": "Mode démonstration",
   "commonUpdatedAt": "Mis à jour {time}",
-  "@commonUpdatedAt": {"placeholders": {"time": {"type": "String"}}},
-
+  "@commonUpdatedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "errorNetworkTitle": "Pas de connexion",
   "errorNetworkMessage": "Vérifiez votre connexion internet puis réessayez.",
   "errorGenericTitle": "Une erreur est survenue",
@@ -23,7 +26,6 @@
   "errorSession": "Votre session a expiré. Reconnectez-vous.",
   "errorUnavailable": "Cette fonction n'est pas disponible dans cette configuration.",
   "offlineBanner": "Hors ligne - affichage des dernières données reçues",
-
   "severityNormal": "Normal",
   "severityVigilance": "Vigilance",
   "severityDanger": "Danger",
@@ -33,10 +35,8 @@
   "trendRising": "En augmentation",
   "trendStable": "Stable",
   "trendFalling": "En baisse",
-
   "splashHeadline": "Ensemble contre les inondations en Côte d'Ivoire",
   "splashStart": "Commencer",
-
   "authLoginTitle": "Connexion",
   "authLoginSubtitle": "Heureux de vous retrouver ! Retrouvez les alertes et les informations de votre zone.",
   "authPhoneLabel": "Numéro de téléphone",
@@ -82,14 +82,18 @@
   "authZoneSearchHint": "Rechercher une commune",
   "authZoneLocate": "Utiliser ma position",
   "authZoneLocated": "Commune détectée : {commune}",
-  "@authZoneLocated": {"placeholders": {"commune": {"type": "String"}}},
-
+  "@authZoneLocated": {
+    "placeholders": {
+      "commune": {
+        "type": "String"
+      }
+    }
+  },
   "navHome": "Accueil",
   "navMap": "Carte",
   "navAlerts": "Alertes",
   "navReport": "Signalement",
   "navProfile": "Profil",
-
   "homeSituation": "Situation actuelle",
   "homeNoAlert": "Aucune alerte dans votre zone",
   "homeAlertActive": "Alerte inondation dans votre zone",
@@ -108,8 +112,13 @@
   "homeAssistantTitle": "Une question ? Demandez à l'assistant",
   "homeAssistantSubtitle": "Conseils de sécurité et explication des alertes",
   "homeOtherAlerts": "{count, plural, =1{1 alerte en cours ailleurs à Abidjan} other{{count} alertes en cours ailleurs à Abidjan}}",
-  "@homeOtherAlerts": {"placeholders": {"count": {"type": "int"}}},
-
+  "@homeOtherAlerts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "stationsTitle": "Stations de mesure",
   "stationsSearchHint": "Rechercher une station ou une commune",
   "stationsFilterAll": "Toutes",
@@ -118,9 +127,21 @@
   "stationDetailLevel": "Niveau d'eau",
   "stationThresholds": "Seuils d'alerte",
   "stationVigilanceThreshold": "Vigilance à partir de {value}",
-  "@stationVigilanceThreshold": {"placeholders": {"value": {"type": "String"}}},
+  "@stationVigilanceThreshold": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "stationDangerThreshold": "Danger à partir de {value}",
-  "@stationDangerThreshold": {"placeholders": {"value": {"type": "String"}}},
+  "@stationDangerThreshold": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
   "station24h": "Dernières 24 heures",
   "stationInfo": "Informations",
   "stationSensor": "Capteur",
@@ -133,14 +154,25 @@
   "stationView3d": "Voir en 3D",
   "stationSeeOnMap": "Voir sur la carte",
   "stationNoHistory": "Pas encore d'historique pour cette station.",
-
   "mapSearchHint": "Rechercher une zone",
   "mapLegend": "Légende",
   "mapLastUpdate": "Dernière mise à jour {time}",
-  "@mapLastUpdate": {"placeholders": {"time": {"type": "String"}}},
+  "@mapLastUpdate": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "mapZoneStations": "Stations de la zone",
   "mapZoneLastFlood": "Dernière inondation : {date}",
-  "@mapZoneLastFlood": {"placeholders": {"date": {"type": "String"}}},
+  "@mapZoneLastFlood": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "mapZoneNoStation": "Aucune station dans cette zone pour le moment.",
   "mapLocationDenied": "Autorisez la localisation pour vous situer sur la carte.",
   "mapLocationError": "Position indisponible pour le moment.",
@@ -151,7 +183,6 @@
   "mapZoomOut": "Dézoomer",
   "mapMyPosition": "Ma position",
   "mapTwin": "Jumeau numérique 3D",
-
   "alertsHistoryTitle": "Historique des alertes",
   "alertsAwarenessTitle": "Sensibilisation",
   "alertsFilterAll": "Tous",
@@ -173,11 +204,16 @@
   "alertExplainAi": "Comprendre avec l'assistant",
   "alertSeeStation": "Voir la station",
   "alertIssuedAt": "Émise le {date}",
-  "@alertIssuedAt": {"placeholders": {"date": {"type": "String"}}},
+  "@alertIssuedAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "awarenessEmpty": "Aucun conseil disponible pour le moment.",
   "awarenessKeyPoints": "À retenir",
   "awarenessAskAi": "Poser une question à l'assistant",
-
   "reportTabTitle": "Signalement",
   "reportCtaTitle": "Signaler un problème",
   "reportCtaSubtitle": "Caniveau bouché, route inondée... Prévenez les autorités en 1 minute.",
@@ -215,11 +251,16 @@
   "reportDetailTitle": "Suivi du signalement",
   "reportDetailHistory": "Historique",
   "reportPickCommune": "Choisir la commune",
-
   "weatherTitle": "Météo",
   "weatherToday": "Aujourd'hui",
   "weatherConfidence": "Indice de confiance : {pct}%",
-  "@weatherConfidence": {"placeholders": {"pct": {"type": "int"}}},
+  "@weatherConfidence": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "weatherForecast5": "Prévisions sur 5 jours",
   "weatherClear": "Ensoleillé",
   "weatherPartlyCloudy": "Éclaircies",
@@ -229,7 +270,6 @@
   "weatherHeavyRain": "Fortes pluies",
   "weatherStorm": "Orages",
   "weatherRainAdvice": "Pluies attendues : évitez les bas-fonds et suivez les alertes de votre zone.",
-
   "profileTitle": "Mon profil",
   "profilePersonalInfo": "Informations personnelles",
   "profileZone": "Ma zone d'habitation",
@@ -245,9 +285,14 @@
   "profileSaved": "Modifications enregistrées",
   "profileInvalidEmail": "Adresse e-mail invalide",
   "profileZoneUpdated": "Zone mise à jour : {commune}",
-  "@profileZoneUpdated": {"placeholders": {"commune": {"type": "String"}}},
+  "@profileZoneUpdated": {
+    "placeholders": {
+      "commune": {
+        "type": "String"
+      }
+    }
+  },
   "profilePhoneReadonly": "Le numéro sert à la connexion et ne peut pas être modifié ici.",
-
   "settingsTitle": "Paramètres",
   "settingsNotifications": "Notifications",
   "settingsPushAlerts": "Alertes push",
@@ -269,7 +314,6 @@
   "settingsAbout": "À propos",
   "settingsVersion": "Version",
   "settingsTerms": "Conditions d'utilisation",
-
   "helpTitle": "Aide et support",
   "helpEmergency": "Numéros d'urgence",
   "helpFirefighters": "Sapeurs-pompiers",
@@ -286,10 +330,8 @@
   "helpQ4": "Que deviennent mes signalements ?",
   "helpA4": "Ils sont transmis aux services techniques de votre mairie. Vous suivez leur traitement dans l'onglet Signalement.",
   "helpAbout": "Overflow est développé par l'équipe Overflow Minds (ESATIC) pour la prévention et la gestion des risques d'inondation en Côte d'Ivoire.",
-
   "termsTitle": "Conditions d'utilisation",
   "termsBody": "Overflow fournit des informations sur le niveau d'eau mesuré par des capteurs et des alertes émises par les autorités. Ces informations sont données à titre indicatif et ne remplacent pas les consignes officielles.\n\nVos données (nom, numéro de téléphone, zone suivie, signalements et photos) servent uniquement à vous envoyer des alertes et à traiter vos signalements. Elles ne sont pas revendues.\n\nVotre position n'est utilisée que lorsque vous la demandez (carte, signalement). Vous pouvez supprimer votre compte à tout moment en contactant l'équipe Overflow.",
-
   "assistantTitle": "Assistant Overflow",
   "assistantSubtitleAi": "Propulsé par Gemini",
   "assistantSubtitleOffline": "Mode hors ligne : réponses préparées",
@@ -302,14 +344,64 @@
   "assistantError": "Réponse impossible pour le moment. Touchez pour réessayer.",
   "assistantDisclaimer": "Les conseils de l'assistant ne remplacent pas les consignes des autorités.",
   "assistantSend": "Envoyer",
-
   "twinTitle": "Jumeau numérique 3D",
   "twinLive": "Temps réel",
   "twinScenarios": "Simulations",
   "twinLiveLabel": "Mesure capteur",
   "twinNoSensor": "Aucun capteur relié à ce site : affichage des simulations.",
   "twinNoSites": "Aucun site 3D disponible.",
-
   "notifChannelName": "Alertes inondation",
-  "notifChannelDesc": "Alertes de niveau d'eau de votre zone"
+  "notifChannelDesc": "Alertes de niveau d'eau de votre zone",
+  "emergencySos": "SOS",
+  "emergencyTitle": "Besoin d'aide ?",
+  "emergencySubtitle": "Appelez directement les secours. Les numéros d'urgence sont gratuits.",
+  "emergencySendSos": "Envoyer un SOS avec ma position",
+  "emergencySosHint": "Votre position est transmise aux autorités qui supervisent les inondations.",
+  "emergencySosSent": "SOS reçu (réf. {ref})",
+  "@emergencySosSent": {
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "emergencySosSentDetail": "Les autorités ont votre position. Si votre vie est en danger, appelez aussi les sapeurs-pompiers.",
+  "emergencySosOffline": "Pas de connexion : le SOS n'est pas parti. Appelez directement un numéro ci-dessous.",
+  "emergencyCallTitle": "Appeler les secours",
+  "emergencyCallSemantics": "Appeler {name} au {number}",
+  "@emergencyCallSemantics": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "emergencyShareSms": "Partager ma position par SMS",
+  "emergencySmsBody": "URGENCE inondation. J'ai besoin d'aide à {commune}.{location} (envoyé depuis Overflow)",
+  "@emergencySmsBody": {
+    "placeholders": {
+      "commune": {
+        "type": "String"
+      },
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "emergencyCallError": "Impossible d'ouvrir le téléphone. Composez le {number}.",
+  "@emergencyCallError": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "emergencyLaunchError": "Impossible d'ouvrir l'application SMS.",
+  "emergencyCallButton": "Appeler les secours",
+  "emergencyBannerTitle": "Vous êtes dans une zone inondée ?",
+  "emergencyBannerSubtitle": "Appelez les secours ou envoyez un SOS en un geste.",
+  "mapEmergency": "Urgence"
 }

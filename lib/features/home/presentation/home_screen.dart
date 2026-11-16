@@ -17,6 +17,8 @@ import '../../../core/widgets/state_views.dart';
 import '../../alerts/domain/flood_alert.dart';
 import '../../alerts/presentation/alert_providers.dart';
 import '../../auth/presentation/auth_providers.dart';
+import '../../emergency/presentation/emergency_providers.dart';
+import '../../emergency/presentation/emergency_sheet.dart';
 import '../../water_levels/domain/station.dart';
 import '../../water_levels/presentation/station_providers.dart';
 import '../../water_levels/presentation/widgets/station_row.dart';
@@ -73,6 +75,10 @@ class HomeScreen extends ConsumerWidget {
                     updatedAt: stations.value?.map((s) => s.updatedAt).fold<DateTime?>(null, (a, b) => a == null || b.isAfter(a) ? b : a),
                     onTap: () => zoneAlert != null ? context.push(Routes.alert(zoneAlert.id)) : context.go(Routes.alertsFilter('zone')),
                   ),
+                  if (ref.watch(inDangerZoneProvider)) ...[
+                    const SizedBox(height: 12),
+                    _EmergencyBanner(alertId: zoneAlert?.id),
+                  ],
                   if (otherAlerts > 0) ...[
                     const SizedBox(height: 10),
                     _OtherAlertsLink(count: otherAlerts),
@@ -265,6 +271,38 @@ class _SituationCard extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Acces direct aux secours quand la zone suivie est inondee.
+class _EmergencyBanner extends StatelessWidget {
+  const _EmergencyBanner({this.alertId});
+  final String? alertId;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    return AppCard(
+      onTap: () => showEmergencySheet(context, alertId: alertId),
+      border: Border.all(color: AppColors.danger.withValues(alpha: 0.4)),
+      child: Row(
+        children: [
+          const IconTile(icon: LucideIcons.siren, color: Colors.white, background: AppColors.danger, size: 46, radius: 23),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l.emergencyBannerTitle, style: AppText.title.copyWith(color: AppColors.danger)),
+                const SizedBox(height: 2),
+                Text(l.emergencyBannerSubtitle, style: AppText.caption),
+              ],
+            ),
+          ),
+          const Icon(LucideIcons.phoneCall, color: AppColors.danger, size: 22),
+        ],
       ),
     );
   }

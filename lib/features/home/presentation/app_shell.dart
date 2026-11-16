@@ -8,6 +8,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/banners.dart';
 import '../../alerts/presentation/alert_providers.dart';
+import '../../emergency/presentation/emergency_sheet.dart';
 
 /// Squelette des 5 onglets : Accueil, Carte, Alertes, Signalement, Profil.
 class AppShell extends ConsumerWidget {
@@ -32,6 +33,8 @@ class AppShell extends ConsumerWidget {
           Expanded(child: shell),
         ],
       ),
+      // Visible uniquement quand la zone suivie est en danger.
+      floatingActionButton: const SosButton(),
       bottomNavigationBar: DecoratedBox(
         decoration: const BoxDecoration(
           color: AppColors.surface,

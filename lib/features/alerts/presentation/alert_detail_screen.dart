@@ -6,12 +6,14 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../core/l10n/l10n.dart';
 import '../../../core/router/app_router.dart';
+import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/theme/severity_style.dart';
 import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/buttons.dart';
 import '../../../core/widgets/headers.dart';
 import '../../../core/widgets/state_views.dart';
+import '../../emergency/presentation/emergency_sheet.dart';
 import '../data/alert_repositories.dart';
 import '../domain/flood_alert.dart';
 import 'alert_providers.dart';
@@ -168,6 +170,15 @@ class _Content extends StatelessWidget {
                   ),
                 ],
                 const SizedBox(height: 22),
+                if (alert.active && alert.kind != AlertKind.ended) ...[
+                  PrimaryButton(
+                    label: l.emergencyCallButton,
+                    icon: LucideIcons.phoneCall,
+                    color: AppColors.alertRedDark,
+                    onPressed: () => showEmergencySheet(context, alertId: alert.id),
+                  ),
+                  const SizedBox(height: 12),
+                ],
                 PrimaryButton(
                   label: l.alertSeeMap,
                   color: Colors.white,

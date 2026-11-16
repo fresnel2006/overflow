@@ -21,35 +21,38 @@ class AuthScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, box) => SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: box.maxHeight - 24),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 480),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      AuthHeader(onBack: onBack),
-                      const SizedBox(height: 28),
-                      Text(title, style: AppText.h1),
-                      const SizedBox(height: 8),
-                      DefaultTextStyle.merge(style: AppText.bodyMuted, child: subtitle),
-                      const SizedBox(height: 24),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(16, 20, 16, 22),
-                        decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(AppRadius.xl), boxShadow: AppShadows.card),
-                        child: card,
-                      ),
-                      if (footer != null) ...[const SizedBox(height: 24), footer!],
-                      const SizedBox(height: 24),
-                      if (showBanner) const AuthInfoBanner(),
-                    ],
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, box) => SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: box.maxHeight - 24),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 480),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        AuthHeader(onBack: onBack),
+                        const SizedBox(height: 28),
+                        Text(title, style: AppText.h1),
+                        const SizedBox(height: 8),
+                        DefaultTextStyle.merge(style: AppText.bodyMuted, child: subtitle),
+                        const SizedBox(height: 24),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(16, 20, 16, 22),
+                          decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(AppRadius.xl), boxShadow: AppShadows.card),
+                          child: card,
+                        ),
+                        if (footer != null) ...[const SizedBox(height: 24), footer!],
+                        const SizedBox(height: 24),
+                        if (showBanner) const AuthInfoBanner(),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -77,7 +80,10 @@ class AuthFooterLink extends StatelessWidget {
       InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(6),
-        child: Padding(padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 2), child: Text(link, style: AppText.link)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
+          child: Text(link, style: AppText.link),
+        ),
       ),
     ],
   );
@@ -106,7 +112,10 @@ class IvorianPhoneFormatter extends TextInputFormatter {
       buf.write(digits[i]);
     }
     final text = buf.toString();
-    return TextEditingValue(text: text, selection: TextSelection.collapsed(offset: text.length));
+    return TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
+    );
   }
 }
 
@@ -222,7 +231,9 @@ class FormErrorText extends StatelessWidget {
               children: [
                 const Icon(LucideIcons.circleAlert, size: 16, color: AppColors.danger),
                 const SizedBox(width: 8),
-                Expanded(child: Text(message!, style: AppText.caption.copyWith(color: AppColors.danger, fontSize: 12.5))),
+                Expanded(
+                  child: Text(message!, style: AppText.caption.copyWith(color: AppColors.danger, fontSize: 12.5)),
+                ),
               ],
             ),
           ),

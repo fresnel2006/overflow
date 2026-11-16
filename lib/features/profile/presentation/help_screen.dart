@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../core/l10n/l10n.dart';
@@ -7,15 +7,19 @@ import '../../../core/router/app_router.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/app_card.dart';
+import '../../../core/widgets/buttons.dart';
 import '../../../core/widgets/headers.dart';
+import '../../emergency/data/emergency_repositories.dart';
+import '../../emergency/presentation/emergency_providers.dart';
+import '../../emergency/presentation/emergency_sheet.dart';
 
-class HelpScreen extends StatelessWidget {
+class HelpScreen extends ConsumerWidget {
   const HelpScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
-    final emergency = [(LucideIcons.siren, l.helpFirefighters, '180'), (LucideIcons.activity, l.helpSamu, '185'), (LucideIcons.shield, l.helpPolice, '110')];
+    final contacts = ref.watch(emergencyContactsProvider).value ?? defaultEmergencyContacts;
     final faq = [(l.helpQ1, l.helpA1), (l.helpQ2, l.helpA2), (l.helpQ3, l.helpA3), (l.helpQ4, l.helpA4)];
 
     return SafeArea(
@@ -27,21 +31,30 @@ class HelpScreen extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
               children: [
-                SectionTitle(l.helpEmergency, padding: const EdgeInsets.only(bottom: 10)),
+                PrimaryButton(label: l.emergencyTitle, icon: LucideIcons.siren, color: AppColors.danger, onPressed: () => showEmergencySheet(context)),
+                SectionTitle(l.helpEmergency),
                 AppCard(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Column(
                     children: [
-                      for (final (i, e) in emergency.indexed) ...[
+                      for (final (i, c) in contacts.indexed) ...[
                         if (i > 0) const Divider(indent: 16, endIndent: 16),
                         ListTile(
-                          leading: IconTile(icon: e.$1, color: AppColors.danger, background: AppColors.dangerSoft, size: 38, radius: 19),
-                          title: Text(e.$2, style: AppText.title.copyWith(fontWeight: FontWeight.w500)),
-                          trailing: Text(e.$3, style: AppText.h3.copyWith(color: AppColors.danger)),
-                          onTap: () {
-                            // Copie du numero : le composeur n'est pas ouvert automatiquement.
-                            Clipboard.setData(ClipboardData(text: e.$3));
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${e.$2} : ${e.$3}')));
+                          leading: IconTile(icon: c.service.icon, color: AppColors.danger, background: AppColors.dangerSoft, size: 38, radius: 19),
+                          title: Text(c.name, style: AppText.title.copyWith(fontWeight: FontWeight.w500)),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(c.number, style: AppText.h3.copyWith(color: AppColors.danger)),
+                              const SizedBox(width: 10),
+                              const Icon(LucideIcons.phone, size: 18, color: AppColors.success),
+                            ],
+                          ),
+                          // Ouvre le composeur avec le numero.
+                          onTap: () async {
+                            final messenger = ScaffoldMessenger.of(context);
+                            final ok = await callNumber(c.number);
+                            if (!ok) messenger.showSnackBar(SnackBar(content: Text(l.emergencyCallError(c.number))));
                           },
                         ),
                       ],
