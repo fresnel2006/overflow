@@ -45,13 +45,13 @@ class WelcomeScreen extends ConsumerWidget {
                   Container(
                     width: compact ? 104 : 124,
                     height: compact ? 104 : 124,
-                    padding: const EdgeInsets.all(18),
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
                       boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.12), blurRadius: 24, offset: const Offset(0, 8))],
                     ),
-                    child: const OverflowLogo(size: 90),
+                    child: const OverflowLogo(size: 108),
                   ),
                   const SizedBox(height: 18),
                   Text(l.appName, style: AppText.display.copyWith(color: Colors.white, fontSize: compact ? 32 : 38, fontWeight: FontWeight.w800, letterSpacing: 0.5)),

@@ -110,7 +110,9 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/images/overflow_avec_fond_blanc.png
+# Sources generees a partir de overflow_goutte_hd.png (goutte detouree en haute definition).
+  image_path: assets/icon/app_icon.png
   remove_alpha_ios: true
   adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: assets/images/overflow_sans_fond.png
+  adaptive_icon_foreground: assets/icon/app_icon_foreground.png
+  adaptive_icon_monochrome: assets/icon/app_icon_monochrome.png

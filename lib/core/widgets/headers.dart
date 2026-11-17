@@ -12,9 +12,15 @@ class OverflowLogo extends StatelessWidget {
   const OverflowLogo({super.key, this.size = 28});
   final double size;
 
+  // Goutte haute definition sans marge : elle occupe ~77 % de la hauteur, comme l'ancien logo.
   @override
-  Widget build(BuildContext context) =>
-      Image.asset('assets/images/overflow_sans_fond.png', width: size, height: size, fit: BoxFit.contain, semanticLabel: 'Overflow');
+  Widget build(BuildContext context) => SizedBox(
+    width: size,
+    height: size,
+    child: Center(
+      child: Image.asset('assets/images/overflow_goutte_hd.png', height: size * 0.77, fit: BoxFit.contain, filterQuality: FilterQuality.medium, semanticLabel: 'Overflow'),
+    ),
+  );
 }
 
 /// Logo + "OverFlow" en bleu (en-tete des ecrans d'authentification et de l'accueil).
