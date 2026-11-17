@@ -58,7 +58,7 @@ class PageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: EdgeInsets.fromLTRB(showBack ? 8 : 20, 8, 12, 8),
+    padding: EdgeInsets.fromLTRB(showBack ? 8 : 20, 22, 12, 14),
     child: Row(
       children: [
         if (showBack)

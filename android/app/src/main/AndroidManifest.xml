@@ -62,5 +62,9 @@
             <action android:name="android.intent.action.SENDTO" />
             <data android:scheme="sms" />
         </intent>
+        <!-- Lecture vocale des consignes de securite (flutter_tts). -->
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
     </queries>
 </manifest>

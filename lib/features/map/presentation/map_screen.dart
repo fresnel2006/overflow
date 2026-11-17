@@ -6,10 +6,12 @@ import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
+import '../../../core/config/app_config.dart';
 import '../../../core/domain/commune.dart';
 import '../../../core/domain/severity.dart';
 import '../../../core/l10n/l10n.dart';
 import '../../../core/router/app_router.dart';
+import '../../../core/services/geocoding_service.dart';
 import '../../../core/services/location_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -48,8 +50,13 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   // Les pastilles des capteurs n'apparaissent qu'en vue rapprochee pour ne pas couvrir les zones.
   static const _stationZoom = 14.0;
   var _showStations = false;
-  LatLng? _me;
+  GeoPoint? _me;
+  Place? _myPlace;
+  var _resolvingPlace = false;
   String? _handledFocus;
+  // Lieux Mapbox correspondant a la recherche (en plus des zones a risque).
+  List<Place> _places = const [];
+  String _placesQuery = '';
 
   @override
   void initState() {
@@ -125,14 +132,45 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     setState(() => _locating = true);
     try {
       final p = await ref.read(locationServiceProvider).current();
-      final me = LatLng(p.lat, p.lon);
-      setState(() => _me = me);
-      _map.move(me, 15);
+      setState(() {
+        _me = p;
+        _myPlace = null;
+        _resolvingPlace = true;
+      });
+      _map.move(LatLng(p.lat, p.lon), 16.5);
+      // Adresse exacte (rue, quartier, commune) via Mapbox.
+      final place = await ref.read(geocodingServiceProvider).reverse(p.lat, p.lon);
+      if (mounted) setState(() => _myPlace = place);
     } on LocationException catch (e) {
       messenger.showSnackBar(SnackBar(content: Text(e.reason == LocationFailure.unavailable ? l.mapLocationError : l.mapLocationDenied)));
     } finally {
-      if (mounted) setState(() => _locating = false);
+      if (mounted) {
+        setState(() {
+          _locating = false;
+          _resolvingPlace = false;
+        });
+      }
     }
+  }
+
+  Future<void> _searchPlaces(String query) async {
+    final q = query.trim();
+    _placesQuery = q;
+    if (q.length < 3) {
+      if (_places.isNotEmpty) setState(() => _places = const []);
+      return;
+    }
+    await Future<void>.delayed(const Duration(milliseconds: 350)); // attend la fin de la frappe
+    if (!mounted || q != _placesQuery) return;
+    final found = await ref.read(geocodingServiceProvider).search(q);
+    if (mounted && q == _placesQuery) setState(() => _places = found);
+  }
+
+  void _goToPlace(Place p) {
+    _searchFocus.unfocus();
+    _search.text = p.name;
+    setState(() => _places = const []);
+    _map.move(LatLng(p.lat, p.lon), 16);
   }
 
   @override
@@ -143,6 +181,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     final zoneList = zones.value ?? const <RiskZone>[];
     final stationList = stations.value ?? const <Station>[];
     if (zones.hasValue && stations.hasValue) _applyFocus(zoneList, stationList);
+    final mapbox = ref.watch(appConfigProvider).mapboxToken;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
@@ -165,7 +204,15 @@ class _MapScreenState extends ConsumerState<MapScreen> {
               },
             ),
             children: [
-              if (_satellite) ...[
+              if (mapbox.isNotEmpty)
+                TileLayer(
+                  urlTemplate: 'https://api.mapbox.com/styles/v1/mapbox/${_satellite ? 'satellite-streets-v12' : 'streets-v12'}/tiles/256/{z}/{x}/{y}{r}?access_token={token}',
+                  additionalOptions: {'token': mapbox},
+                  userAgentPackageName: 'ci.esatic.overflow',
+                  retinaMode: RetinaMode.isHighDensity(context),
+                  maxNativeZoom: 20,
+                )
+              else if (_satellite) ...[
                 TileLayer(
                   urlTemplate: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
                   userAgentPackageName: 'ci.esatic.overflow',
@@ -180,6 +227,15 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                 TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', userAgentPackageName: 'ci.esatic.overflow', maxNativeZoom: 19),
               CircleLayer(
                 circles: [
+                  if (_me?.accuracyM != null)
+                    CircleMarker(
+                      point: LatLng(_me!.lat, _me!.lon),
+                      radius: _me!.accuracyM!,
+                      useRadiusInMeter: true,
+                      color: AppColors.primary.withValues(alpha: 0.12),
+                      borderColor: AppColors.primary.withValues(alpha: 0.5),
+                      borderStrokeWidth: 1,
+                    ),
                   for (final z in zoneList)
                     CircleMarker(
                       point: LatLng(z.lat, z.lon),
@@ -210,7 +266,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                       alignment: Alignment.topCenter,
                       child: _ZonePin(color: z.risk.color, label: z.name, onTap: () => _openZone(z)),
                     ),
-                  if (_me != null) Marker(point: _me!, width: 22, height: 22, child: const _MeDot()),
+                  if (_me != null) Marker(point: LatLng(_me!.lat, _me!.lon), width: 22, height: 22, child: const _MeDot()),
                 ],
               ),
             ],
@@ -223,16 +279,38 @@ class _MapScreenState extends ConsumerState<MapScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  _SearchBar(controller: _search, focusNode: _searchFocus, onChanged: (_) => setState(() {})),
+                  _SearchBar(
+                    controller: _search,
+                    focusNode: _searchFocus,
+                    onChanged: (q) {
+                      setState(() {});
+                      _searchPlaces(q);
+                    },
+                  ),
                   if (_searchFocus.hasFocus && _search.text.trim().isNotEmpty)
                     _SearchResults(
-                      zones: zoneList.where((z) => matchesQuery('${z.name} ${z.commune}', _search.text.trim())).take(6).toList(),
+                      zones: zoneList.where((z) => matchesQuery('${z.name} ${z.commune}', _search.text.trim())).take(4).toList(),
+                      places: _places,
+                      onSelectPlace: _goToPlace,
                       onSelect: (z) {
                         _search.text = z.name;
                         _map.move(LatLng(z.lat, z.lon), 14.5);
                         _openZone(z);
                       },
                     ),
+                  if (_me != null && !_searchFocus.hasFocus) ...[
+                    const SizedBox(height: 10),
+                    _MyPositionCard(
+                      point: _me!,
+                      place: _myPlace,
+                      loading: _resolvingPlace,
+                      onTap: () => _map.move(LatLng(_me!.lat, _me!.lon), 17),
+                      onClose: () => setState(() {
+                        _me = null;
+                        _myPlace = null;
+                      }),
+                    ),
+                  ],
                   const SizedBox(height: 12),
                   Align(
                     alignment: Alignment.centerRight,
@@ -298,7 +376,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
             left: 16,
             right: 16,
             bottom: 16,
-            child: _LegendCard(updatedAt: stationList.isEmpty ? null : stationList.first.updatedAt, satellite: _satellite),
+            child: _LegendCard(updatedAt: stationList.isEmpty ? null : stationList.first.updatedAt, satellite: _satellite, mapbox: mapbox.isNotEmpty),
           ),
         ],
       ),
@@ -348,15 +426,17 @@ class _SearchBar extends StatelessWidget {
 }
 
 class _SearchResults extends StatelessWidget {
-  const _SearchResults({required this.zones, required this.onSelect});
+  const _SearchResults({required this.zones, required this.onSelect, this.places = const [], this.onSelectPlace});
   final List<RiskZone> zones;
   final ValueChanged<RiskZone> onSelect;
+  final List<Place> places;
+  final ValueChanged<Place>? onSelectPlace;
 
   @override
   Widget build(BuildContext context) => Container(
     margin: const EdgeInsets.only(top: 8),
     decoration: BoxDecoration(color: AppColors.surface, borderRadius: BorderRadius.circular(AppRadius.lg), boxShadow: AppShadows.card),
-    child: zones.isEmpty
+    child: zones.isEmpty && places.isEmpty
         ? Padding(
             padding: const EdgeInsets.all(16),
             child: Text(context.l10n.mapNoResult, style: AppText.bodyMuted),
@@ -370,6 +450,14 @@ class _SearchResults extends StatelessWidget {
                   title: Text(z.name, style: AppText.title.copyWith(fontSize: 13.5)),
                   subtitle: Text(z.risk.label(context.l10n), style: AppText.caption),
                   onTap: () => onSelect(z),
+                ),
+              for (final p in places)
+                ListTile(
+                  dense: true,
+                  leading: const Icon(LucideIcons.mapPinned, color: AppColors.primary, size: 20),
+                  title: Text(p.name, style: AppText.title.copyWith(fontSize: 13.5)),
+                  subtitle: Text(p.address, style: AppText.caption, maxLines: 1, overflow: TextOverflow.ellipsis),
+                  onTap: () => onSelectPlace?.call(p),
                 ),
             ],
           ),
@@ -437,9 +525,10 @@ class _MeDot extends StatelessWidget {
 }
 
 class _LegendCard extends StatelessWidget {
-  const _LegendCard({required this.updatedAt, required this.satellite});
+  const _LegendCard({required this.updatedAt, required this.satellite, this.mapbox = false});
   final DateTime? updatedAt;
   final bool satellite;
+  final bool mapbox;
 
   @override
   Widget build(BuildContext context) {
@@ -476,10 +565,66 @@ class _LegendCard extends StatelessWidget {
           Row(
             children: [
               Expanded(child: Text(l.mapLastUpdate(Fmt.time(updatedAt ?? DateTime.now())), style: AppText.caption.copyWith(fontSize: 10.5))),
-              Text(satellite ? '© Esri, OpenStreetMap' : '© OpenStreetMap', style: AppText.caption.copyWith(fontSize: 9, color: AppColors.textMuted)),
+              Text(mapbox ? '© Mapbox © OpenStreetMap' : (satellite ? '© Esri, OpenStreetMap' : '© OpenStreetMap'), style: AppText.caption.copyWith(fontSize: 9, color: AppColors.textMuted)),
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// "Vous etes ici" : adresse exacte (Mapbox) et precision du GPS.
+class _MyPositionCard extends StatelessWidget {
+  const _MyPositionCard({required this.point, required this.place, required this.loading, required this.onTap, required this.onClose});
+  final GeoPoint point;
+  final Place? place;
+  final bool loading;
+  final VoidCallback onTap;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final coords = '${point.lat.toStringAsFixed(5)}, ${point.lon.toStringAsFixed(5)}';
+    final accuracy = point.accuracyM == null ? null : l.mapAccuracy(point.accuracyM!.round());
+    return DecoratedBox(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppRadius.lg), boxShadow: AppShadows.card),
+      child: Material(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 10, 4, 10),
+            child: Row(
+              children: [
+                Container(
+                  width: 38,
+                  height: 38,
+                  decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.1), shape: BoxShape.circle),
+                  child: const Icon(LucideIcons.navigation, size: 18, color: AppColors.primary),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(l.mapYouAreHere, style: AppText.caption.copyWith(fontSize: 11)),
+                      if (loading)
+                        Text(l.mapFindingAddress, style: AppText.title.copyWith(fontSize: 13.5, color: AppColors.textSecondary))
+                      else
+                        Text(place?.address ?? coords, maxLines: 2, overflow: TextOverflow.ellipsis, style: AppText.title.copyWith(fontSize: 13.5)),
+                      Text([if (place != null) coords, ?accuracy].join(' · '), style: AppText.caption.copyWith(fontSize: 10.5)),
+                    ],
+                  ),
+                ),
+                IconButton(tooltip: l.commonClose, onPressed: onClose, icon: const Icon(LucideIcons.x, size: 18)),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

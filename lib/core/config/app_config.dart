@@ -16,6 +16,7 @@ class AppConfig {
     required this.geminiApiKey,
     required this.geminiModel,
     required this.aiProxyUrl,
+    this.mapboxToken = '',
     this.firebaseOptions,
   });
 
@@ -27,10 +28,14 @@ class AppConfig {
   final String geminiModel;
   final String aiProxyUrl;
 
+  /// Jeton public Mapbox : fond de carte, adresse exacte de l'utilisateur et recherche d'adresses.
+  final String mapboxToken;
+
   /// Null si Firebase n'est pas configure.
   final FirebaseOptions? firebaseOptions;
 
   bool get firebaseEnabled => firebaseOptions != null;
+  bool get hasMapbox => mapboxToken.isNotEmpty;
   bool get hasGemini => geminiApiKey.isNotEmpty || aiProxyUrl.isNotEmpty;
 
   static const envAsset = 'assets/config/app.env';
@@ -46,6 +51,7 @@ class AppConfig {
       geminiApiKey: _read('GEMINI_API_KEY', _defineGeminiKey, ''),
       geminiModel: _read('GEMINI_MODEL', _defineGeminiModel, 'gemini-2.5-flash'),
       aiProxyUrl: _read('AI_PROXY_URL', _defineAiProxy, ''),
+      mapboxToken: _read('MAPBOX_TOKEN', _defineMapbox, ''),
       firebaseOptions: firebase,
     );
   }
@@ -58,6 +64,7 @@ class AppConfig {
   static const _defineGeminiKey = String.fromEnvironment('GEMINI_API_KEY');
   static const _defineGeminiModel = String.fromEnvironment('GEMINI_MODEL');
   static const _defineAiProxy = String.fromEnvironment('AI_PROXY_URL');
+  static const _defineMapbox = String.fromEnvironment('MAPBOX_TOKEN');
   static const _defineFbApiKey = String.fromEnvironment('FIREBASE_API_KEY');
   static const _defineFbAppId = String.fromEnvironment('FIREBASE_APP_ID');
   static const _defineFbSender = String.fromEnvironment('FIREBASE_MESSAGING_SENDER_ID');
@@ -90,7 +97,7 @@ class AppConfig {
   }
 
   @override
-  String toString() => 'AppConfig(mocks: $useMocks, api: $apiBaseUrl, firebase: $firebaseEnabled, gemini: $hasGemini, debug: $kDebugMode)';
+  String toString() => 'AppConfig(mocks: $useMocks, api: $apiBaseUrl, firebase: $firebaseEnabled, gemini: $hasGemini, mapbox: $hasMapbox, debug: $kDebugMode)';
 }
 
 /// Surcharge dans main() avec la configuration chargee.

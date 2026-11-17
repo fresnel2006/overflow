@@ -154,11 +154,7 @@ class _DigitalTwinScreenState extends ConsumerState<DigitalTwinScreen> {
                   _siteId = s.id;
                   _stationId = null;
                 }),
-                leading: GlassIconButton(
-                  tooltip: l.commonBack,
-                  onTap: () => goBack(context),
-                  child: Icon(LucideIcons.arrowLeft, size: 20, color: Fx.of(context).text),
-                ),
+                leading: _BackButton(tooltip: l.commonBack, onTap: () => goBack(context)),
                 bottomAccessory: _ModeSwitch(
                   mode: _mode,
                   liveAvailable: station != null,
@@ -181,6 +177,42 @@ class _DigitalTwinScreenState extends ConsumerState<DigitalTwinScreen> {
       brightness: Brightness.dark,
       fontFamily: AppText.family,
       colorScheme: ColorScheme.fromSeed(seedColor: TwinColors.ocean, brightness: Brightness.dark, primary: TwinColors.sky),
+    );
+  }
+}
+
+/// Bouton retour bien visible : pastille blanche pleine avec ombre, quel que soit le fond 3D.
+class _BackButton extends StatelessWidget {
+  const _BackButton({required this.tooltip, required this.onTap});
+
+  final String tooltip;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final fx = Fx.of(context);
+    return Tooltip(
+      message: tooltip,
+      child: Semantics(
+        button: true,
+        label: tooltip,
+        child: DecoratedBox(
+          decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: fx.shadow),
+          child: Material(
+            color: Colors.white,
+            shape: const CircleBorder(),
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: onTap,
+              child: const SizedBox(
+                width: 44,
+                height: 44,
+                child: Icon(LucideIcons.arrowLeft, size: 22, color: TwinColors.navy),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

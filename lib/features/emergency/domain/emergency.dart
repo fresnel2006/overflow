@@ -45,11 +45,15 @@ class EmergencyContact {
 
 /// Appel a l'aide transmis aux autorites (visible sur le dashboard de supervision).
 class SosRequest {
-  const SosRequest({required this.commune, this.lat, this.lon, this.alertId, this.message, this.phone});
+  const SosRequest({required this.commune, this.lat, this.lon, this.accuracyM, this.address, this.alertId, this.message, this.phone});
 
   final String commune;
   final double? lat;
   final double? lon;
+
+  /// Precision du GPS en metres et adresse exacte (rue, quartier) : aident les secours a trouver la personne.
+  final double? accuracyM;
+  final String? address;
   final String? alertId;
   final String? message;
   final String? phone;
@@ -58,6 +62,8 @@ class SosRequest {
     'commune': commune,
     'lat': lat,
     'lon': lon,
+    'accuracy_m': ?accuracyM,
+    'address': ?address,
     'alert_id': ?alertId,
     'message': ?message,
     'phone': ?phone,

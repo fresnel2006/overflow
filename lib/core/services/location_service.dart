@@ -9,9 +9,12 @@ class LocationException implements Exception {
 }
 
 class GeoPoint {
-  const GeoPoint(this.lat, this.lon);
+  const GeoPoint(this.lat, this.lon, {this.accuracyM});
   final double lat;
   final double lon;
+
+  /// Rayon d'incertitude du GPS, en metres (null si inconnu).
+  final double? accuracyM;
 }
 
 /// Position GPS de l'appareil, avec gestion des autorisations.
@@ -24,13 +27,13 @@ class LocationService {
     if (perm == LocationPermission.deniedForever) throw const LocationException(LocationFailure.deniedForever);
     try {
       final p = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high, timeLimit: Duration(seconds: 15)),
+        locationSettings: const LocationSettings(accuracy: LocationAccuracy.best, timeLimit: Duration(seconds: 15)),
       );
-      return GeoPoint(p.latitude, p.longitude);
+      return GeoPoint(p.latitude, p.longitude, accuracyM: p.accuracy);
     } catch (_) {
       // Repli sur la derniere position connue (utile avec un GPS lent).
       final last = await Geolocator.getLastKnownPosition();
-      if (last != null) return GeoPoint(last.latitude, last.longitude);
+      if (last != null) return GeoPoint(last.latitude, last.longitude, accuracyM: last.accuracy);
       throw const LocationException(LocationFailure.unavailable);
     }
   }

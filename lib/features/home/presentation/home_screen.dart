@@ -19,6 +19,7 @@ import '../../alerts/presentation/alert_providers.dart';
 import '../../auth/presentation/auth_providers.dart';
 import '../../emergency/presentation/emergency_providers.dart';
 import '../../emergency/presentation/emergency_sheet.dart';
+import '../../emergency/presentation/voice_guide.dart';
 import '../../water_levels/domain/station.dart';
 import '../../water_levels/presentation/station_providers.dart';
 import '../../water_levels/presentation/widgets/station_row.dart';
@@ -78,6 +79,8 @@ class HomeScreen extends ConsumerWidget {
                   if (ref.watch(inDangerZoneProvider)) ...[
                     const SizedBox(height: 12),
                     _EmergencyBanner(alertId: zoneAlert?.id),
+                    const SizedBox(height: 10),
+                    const VoiceGuideButton(),
                   ],
                   if (otherAlerts > 0) ...[
                     const SizedBox(height: 10),

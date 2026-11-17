@@ -1858,6 +1858,12 @@ abstract class AppLocalizations {
   /// **'URGENCE inondation. J\'ai besoin d\'aide à {commune}.{location} (envoyé depuis Overflow)'**
   String emergencySmsBody(String commune, String location);
 
+  /// No description provided for @emergencySmsNear.
+  ///
+  /// In fr, this message translates to:
+  /// **'Je suis vers : {address}.'**
+  String emergencySmsNear(String address);
+
   /// No description provided for @emergencyCallError.
   ///
   /// In fr, this message translates to:
@@ -1887,6 +1893,48 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Appelez les secours ou envoyez un SOS en un geste.'**
   String get emergencyBannerSubtitle;
+
+  /// No description provided for @voiceListen.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écouter les consignes de sécurité'**
+  String get voiceListen;
+
+  /// No description provided for @voiceStop.
+  ///
+  /// In fr, this message translates to:
+  /// **'Arrêter la lecture'**
+  String get voiceStop;
+
+  /// No description provided for @voiceUnavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'La lecture vocale n\'est pas disponible sur ce téléphone.'**
+  String get voiceUnavailable;
+
+  /// No description provided for @voiceGuidance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Attention. Votre zone est en alerte inondation. Voici les consignes de sécurité. Un : montez immédiatement en hauteur, à l\'étage ou sur un point élevé, et restez-y. Deux : ne traversez jamais une rue inondée, ni à pied, ni en voiture, ni à moto. Trente centimètres d\'eau suffisent à emporter une voiture. Trois : coupez l\'électricité et le gaz, si vous pouvez le faire sans danger. Quatre : éloignez-vous des caniveaux, des ravins, des talus et des murs fragilisés. Cinq : mettez les enfants, les personnes âgées et vos documents importants à l\'abri. Six : gardez votre téléphone chargé et suivez les consignes des autorités. En cas de danger immédiat, appelez les sapeurs-pompiers au 1 8 0. Pour envoyer votre position aux secours, appuyez sur le bouton SOS.'**
+  String get voiceGuidance;
+
+  /// No description provided for @mapYouAreHere.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous êtes ici'**
+  String get mapYouAreHere;
+
+  /// No description provided for @mapFindingAddress.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recherche de l\'adresse…'**
+  String get mapFindingAddress;
+
+  /// No description provided for @mapAccuracy.
+  ///
+  /// In fr, this message translates to:
+  /// **'précision ± {meters} m'**
+  String mapAccuracy(int meters);
 
   /// No description provided for @mapEmergency.
   ///

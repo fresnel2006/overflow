@@ -970,6 +970,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String emergencySmsNear(String address) {
+    return 'Je suis vers : $address.';
+  }
+
+  @override
   String emergencyCallError(String number) {
     return 'Impossible d\'ouvrir le téléphone. Composez le $number.';
   }
@@ -986,6 +991,31 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get emergencyBannerSubtitle =>
       'Appelez les secours ou envoyez un SOS en un geste.';
+
+  @override
+  String get voiceListen => 'Écouter les consignes de sécurité';
+
+  @override
+  String get voiceStop => 'Arrêter la lecture';
+
+  @override
+  String get voiceUnavailable =>
+      'La lecture vocale n\'est pas disponible sur ce téléphone.';
+
+  @override
+  String get voiceGuidance =>
+      'Attention. Votre zone est en alerte inondation. Voici les consignes de sécurité. Un : montez immédiatement en hauteur, à l\'étage ou sur un point élevé, et restez-y. Deux : ne traversez jamais une rue inondée, ni à pied, ni en voiture, ni à moto. Trente centimètres d\'eau suffisent à emporter une voiture. Trois : coupez l\'électricité et le gaz, si vous pouvez le faire sans danger. Quatre : éloignez-vous des caniveaux, des ravins, des talus et des murs fragilisés. Cinq : mettez les enfants, les personnes âgées et vos documents importants à l\'abri. Six : gardez votre téléphone chargé et suivez les consignes des autorités. En cas de danger immédiat, appelez les sapeurs-pompiers au 1 8 0. Pour envoyer votre position aux secours, appuyez sur le bouton SOS.';
+
+  @override
+  String get mapYouAreHere => 'Vous êtes ici';
+
+  @override
+  String get mapFindingAddress => 'Recherche de l\'adresse…';
+
+  @override
+  String mapAccuracy(int meters) {
+    return 'précision ± $meters m';
+  }
 
   @override
   String get mapEmergency => 'Urgence';

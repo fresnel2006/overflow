@@ -41,7 +41,7 @@ class WelcomeScreen extends ConsumerWidget {
             SafeArea(
               child: Column(
                 children: [
-                  SizedBox(height: compact ? 28 : size.height * 0.1),
+                  SizedBox(height: compact ? 12 : 24),
                   Container(
                     width: compact ? 104 : 124,
                     height: compact ? 104 : 124,

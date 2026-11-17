@@ -391,7 +391,13 @@
       }
     }
   },
-  "emergencyCallError": "Impossible d'ouvrir le téléphone. Composez le {number}.",
+  "emergencySmsNear": "Je suis vers : {address}.",
+  "@emergencySmsNear": {
+    "placeholders": {
+      "address": {"type": "String"}
+    }
+  },
+  "emergencyCallError":"Impossible d'ouvrir le téléphone. Composez le {number}.",
   "@emergencyCallError": {
     "placeholders": {
       "number": {
@@ -403,5 +409,17 @@
   "emergencyCallButton": "Appeler les secours",
   "emergencyBannerTitle": "Vous êtes dans une zone inondée ?",
   "emergencyBannerSubtitle": "Appelez les secours ou envoyez un SOS en un geste.",
+  "voiceListen": "Écouter les consignes de sécurité",
+  "voiceStop": "Arrêter la lecture",
+  "voiceUnavailable": "La lecture vocale n'est pas disponible sur ce téléphone.",
+  "voiceGuidance": "Attention. Votre zone est en alerte inondation. Voici les consignes de sécurité. Un : montez immédiatement en hauteur, à l'étage ou sur un point élevé, et restez-y. Deux : ne traversez jamais une rue inondée, ni à pied, ni en voiture, ni à moto. Trente centimètres d'eau suffisent à emporter une voiture. Trois : coupez l'électricité et le gaz, si vous pouvez le faire sans danger. Quatre : éloignez-vous des caniveaux, des ravins, des talus et des murs fragilisés. Cinq : mettez les enfants, les personnes âgées et vos documents importants à l'abri. Six : gardez votre téléphone chargé et suivez les consignes des autorités. En cas de danger immédiat, appelez les sapeurs-pompiers au 1 8 0. Pour envoyer votre position aux secours, appuyez sur le bouton SOS.",
+  "mapYouAreHere": "Vous êtes ici",
+  "mapFindingAddress": "Recherche de l'adresse…",
+  "mapAccuracy": "précision ± {meters} m",
+  "@mapAccuracy": {
+    "placeholders": {
+      "meters": {"type": "int"}
+    }
+  },
   "mapEmergency": "Urgence"
 }

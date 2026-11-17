@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/domain/commune.dart';
 import '../../../core/errors/app_exception.dart';
 import '../../../core/l10n/l10n.dart';
+import '../../../core/services/geocoding_service.dart';
 import '../../../core/services/location_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
@@ -15,6 +16,7 @@ import '../../auth/presentation/auth_providers.dart';
 import '../data/emergency_repositories.dart';
 import '../domain/emergency.dart';
 import 'emergency_providers.dart';
+import 'voice_guide.dart';
 
 /// Ouvre la fiche Urgence : appel direct des secours, SOS geolocalise, partage de position.
 Future<void> showEmergencySheet(BuildContext context, {String? alertId}) {
@@ -66,6 +68,10 @@ class _EmergencySheetState extends ConsumerState<EmergencySheet> {
     }
   }
 
+  /// Adresse exacte (Mapbox) ; null hors connexion ou sans jeton : le SOS part quand meme.
+  Future<Place?> _address(GeoPoint p) =>
+      ref.read(geocodingServiceProvider).reverse(p.lat, p.lon).timeout(const Duration(seconds: 5), onTimeout: () => null);
+
   Future<void> _sendSos() async {
     final l = context.l10n;
     setState(() {
@@ -73,10 +79,19 @@ class _EmergencySheetState extends ConsumerState<EmergencySheet> {
       _error = null;
     });
     try {
-      final (point, _) = await _position();
+      final (point, precise) = await _position();
+      final address = precise ? await _address(point!) : null;
       final user = ref.read(currentUserProvider);
       final receipt = await ref.read(emergencyRepositoryProvider).sendSos(
-        SosRequest(commune: ref.read(userCommuneProvider), lat: point?.lat, lon: point?.lon, alertId: widget.alertId, phone: user?.phone),
+        SosRequest(
+          commune: address?.commune?.name ?? ref.read(userCommuneProvider),
+          lat: point?.lat,
+          lon: point?.lon,
+          accuracyM: point?.accuracyM,
+          address: address?.address,
+          alertId: widget.alertId,
+          phone: user?.phone,
+        ),
       );
       if (mounted) setState(() => _receipt = receipt);
       HapticFeedback.heavyImpact();
@@ -91,9 +106,12 @@ class _EmergencySheetState extends ConsumerState<EmergencySheet> {
     final l = context.l10n;
     setState(() => _sharing = true);
     try {
-      final (point, _) = await _position();
-      final commune = ref.read(userCommuneProvider);
-      final where = point == null ? '' : ' https://maps.google.com/?q=${point.lat.toStringAsFixed(5)},${point.lon.toStringAsFixed(5)}';
+      final (point, precise) = await _position();
+      final Place? address = precise ? await _address(point!) : null;
+      final String commune = address?.commune?.name ?? ref.read(userCommuneProvider);
+      final near = address == null ? '' : ' ${l.emergencySmsNear(address.address)}';
+      final link = point == null ? '' : ' https://maps.google.com/?q=${point.lat.toStringAsFixed(5)},${point.lon.toStringAsFixed(5)}';
+      final where = '$near$link';
       final body = l.emergencySmsBody(commune, where);
       final ok = await launchUrl(Uri.parse('sms:?body=${Uri.encodeComponent(body)}'));
       if (!ok && mounted) setState(() => _error = l.emergencyLaunchError);
@@ -140,7 +158,9 @@ class _EmergencySheetState extends ConsumerState<EmergencySheet> {
                 ),
               ],
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 16),
+            const VoiceGuideButton(),
+            const SizedBox(height: 14),
 
             // SOS geolocalise vers les autorites.
             AnimatedSwitcher(

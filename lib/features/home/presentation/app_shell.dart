@@ -8,7 +8,9 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/banners.dart';
 import '../../alerts/presentation/alert_providers.dart';
+import '../../emergency/presentation/emergency_providers.dart';
 import '../../emergency/presentation/emergency_sheet.dart';
+import '../../emergency/presentation/voice_guide.dart';
 
 /// Squelette des 5 onglets : Accueil, Carte, Alertes, Signalement, Profil.
 class AppShell extends ConsumerWidget {
@@ -19,6 +21,10 @@ class AppShell extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l = context.l10n;
     final alertInZone = ref.watch(myZoneActiveAlertProvider) != null;
+    // Des que la zone suivie passe en danger, les consignes de securite sont lues a voix haute.
+    ref.listen(inDangerZoneProvider, (was, now) {
+      if (now && was != true) ref.read(voiceGuideProvider.notifier).speak(l.voiceGuidance);
+    });
     final items = [
       (LucideIcons.house, l.navHome, false),
       (LucideIcons.map, l.navMap, false),
